@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/domain/entities/menu_option.dart';
 
 class LocalMenuOptionModel {
   final String name;
-  final String icon;
+  final IconData icon;
   final String route;
   final String image;
 

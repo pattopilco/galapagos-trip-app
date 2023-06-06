@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 class MenuOption {
   final String name;
-  final String icon;
+  final IconData icon;
   final String route;
   final String image;
 
