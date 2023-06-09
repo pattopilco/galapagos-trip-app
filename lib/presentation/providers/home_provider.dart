@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/config/menu/menu_item.dart';
 import 'package:galapagos_trip_app/domain/repositories/menu_option_repository.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:string_2_icon/string_2_icon.dart';
 import '../../domain/entities/menu_option.dart';
 
 class HomeProvider extends ChangeNotifier {

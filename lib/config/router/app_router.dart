@@ -7,5 +7,6 @@ final appRouter = GoRouter(
       path: '/',
       builder: (context, state) => const HomeScreen(),
     ),
+    GoRoute(path: '/trip', builder: (context, state) => const MyTripScreen())
   ],
 );

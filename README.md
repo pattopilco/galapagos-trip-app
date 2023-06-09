@@ -5,7 +5,7 @@ A new Flutter project.
 ## DEPENDENCIAS
 - provider 6.0.5
 - go_router 7.1.1
-- string_2_icon 0.0.2
+- flutter_bloc 8.1.2
 
 ## ARQUITECTURA
 
