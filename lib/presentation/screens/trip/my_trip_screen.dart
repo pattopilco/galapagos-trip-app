@@ -43,7 +43,7 @@ class _MyTripScreenState extends State<MyTripScreen> {
                               ),
                             ),
                             _gap(),
-                            const SearchForm(),
+                            _SearchForm(),
                           ],
                         ),
                       ),
@@ -61,15 +61,34 @@ class _MyTripScreenState extends State<MyTripScreen> {
   Widget _gap() => const SizedBox(height: 16);
 }
 
-class SearchForm extends StatelessWidget {
-  const SearchForm({super.key});
+class _SearchForm extends StatefulWidget {
+  @override
+  State<_SearchForm> createState() => _SearchFormState();
+}
 
+class _SearchFormState extends State<_SearchForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String voucherCode = '';
+
+  //const SearchForm({super.key});
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
-          const CustomTextFormField(),
+          CustomTextFormField(
+            onChanged: (value) => voucherCode = value,
+            validator: (value) {
+              if (value == null || value.isEmpty)
+                return 'Please enter some code';
+              if (value.trim().isEmpty) return 'Please enter some code';
+              if (value.length > 10)
+                return 'Please enter some code less than 10 characteres';
+              return null;
+            },
+          ),
           _gap(),
           SizedBox(
             width: double.infinity,
@@ -86,9 +105,9 @@ class SearchForm extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                //if (_formKey.currentState?.validate() ?? false) {
-                /// do something
-                //}
+                if (_formKey.currentState?.validate() ?? false) {
+                  print('$voucherCode');
+                }
               },
             ),
           ),

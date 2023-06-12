@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key});
+  final String? label;
+  final String? hint;
+  final String? errorMessage;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+
+  const CustomTextFormField(
+      {super.key,
+      this.label,
+      this.hint,
+      this.errorMessage,
+      this.onChanged,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +24,12 @@ class CustomTextFormField extends StatelessWidget {
     );
 
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty || value.trim().isEmpty) {
-          return 'Please enter some code';
-        }
-        return null;
-      },
+      onChanged: onChanged,
+      validator: validator,
       decoration: InputDecoration(
-        hintText: 'Enter your received code',
-        errorText: 'Please enter some code',
+        label: label != null ? Text(label!) : null,
+        hintText: hint,
+        errorText: errorMessage,
         enabledBorder: border,
         focusedBorder:
             border.copyWith(borderSide: BorderSide(color: colors.primary)),
