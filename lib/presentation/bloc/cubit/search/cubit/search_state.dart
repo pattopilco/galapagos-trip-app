@@ -4,19 +4,24 @@ enum FormStatus { invalid, valid, validating, posting }
 
 class SearchFormState extends Equatable {
   final FormStatus formStatus;
-  final String voucherCode;
+  final bool isValid;
+  final CodeVaucher codeVaucher;
 
   const SearchFormState(
-      {this.formStatus = FormStatus.invalid, this.voucherCode = ''});
+      {this.formStatus = FormStatus.invalid,
+      this.isValid = false,
+      this.codeVaucher = const CodeVaucher.pure()});
 
   SearchFormState copyWith({
     FormStatus? formStatus,
-    String? voucherCode,
+    bool? isValid,
+    CodeVaucher? codeVaucher,
   }) =>
       SearchFormState(
           formStatus: formStatus ?? this.formStatus,
-          voucherCode: voucherCode ?? this.voucherCode);
+          isValid: isValid ?? this.isValid,
+          codeVaucher: codeVaucher ?? this.codeVaucher);
 
   @override
-  List<Object> get props => [formStatus, voucherCode];
+  List<Object> get props => [formStatus, isValid, codeVaucher];
 }
