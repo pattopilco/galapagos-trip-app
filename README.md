@@ -8,6 +8,8 @@ A new Flutter project.
 - flutter_bloc 8.1.2
 - equatable 2.5.0
 - formz 0.6.0
+- shared_preferences 2.1.2
+- flutter_dotenv 5.1.0
 
 ## ARQUITECTURA
 
