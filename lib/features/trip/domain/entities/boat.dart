@@ -1,40 +1,48 @@
+import 'package:galapagos_trip_app/features/trip/domain/entities/images_boat.dart';
+
 class Boat {
-  final String code;
+  final int code;
   final String name;
-  final String category;
+  final int category;
   final String categoryII;
   final String type;
-  final String passengers;
-  final String year;
+  final int passengers;
+  final int year;
   final String length;
   final String beam;
   final String draft;
   final String speed;
   final String description;
   final String image;
-  final String minimumAgeChild;
-  final String maximumAgeChild;
+  final int minimumAgeChild;
+  final int maximumAgeChild;
   final List<String> itineraryTypes;
   final List<String> keyFeatures;
   final List<String> images;
+  final String logo;
+  final String webLink;
+  final List<ImagesBoat> imagesBoat;
 
   Boat(
-      this.code,
-      this.name,
-      this.category,
-      this.categoryII,
-      this.type,
-      this.passengers,
-      this.year,
-      this.length,
-      this.beam,
-      this.draft,
-      this.speed,
-      this.description,
-      this.image,
-      this.minimumAgeChild,
-      this.maximumAgeChild,
-      this.itineraryTypes,
-      this.keyFeatures,
-      this.images);
+      {required this.code,
+      required this.name,
+      required this.category,
+      required this.categoryII,
+      required this.type,
+      required this.passengers,
+      required this.year,
+      required this.length,
+      required this.beam,
+      required this.draft,
+      required this.speed,
+      required this.description,
+      required this.image,
+      required this.minimumAgeChild,
+      required this.maximumAgeChild,
+      required this.itineraryTypes,
+      required this.keyFeatures,
+      required this.images,
+      required this.logo,
+      required this.webLink,
+      required this.imagesBoat});
 }

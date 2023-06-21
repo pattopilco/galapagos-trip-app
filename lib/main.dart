@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/config.dart';
-import 'package:galapagos_trip_app/infraestructure/datasources/local_menu_option_ds_impl.dart';
-import 'package:galapagos_trip_app/infraestructure/repositories/menu_option_repository_impl.dart';
-import 'package:galapagos_trip_app/presentation/providers/home_provider.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   await Environment.initEnvironment();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: appRouter,
+      theme: AppTheme().theme(),
+    );
+  }
+
+/*
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,4 +42,5 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+*/
 }

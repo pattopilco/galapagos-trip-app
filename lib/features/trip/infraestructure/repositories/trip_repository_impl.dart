@@ -1,20 +1,22 @@
+import 'package:galapagos_trip_app/features/trip/domain/entities/booking.dart';
+
 import '../../domain/domaint.dart';
 import '../datasources/trip_datasource_impl.dart';
 
 class TripRepositoryImpl extends TripRepository {
   final TripDataSource tripDataSource;
 
-  TripRepositoryImpl(TripDataSource? tripDataSource)
+  TripRepositoryImpl({TripDataSource? tripDataSource})
       : tripDataSource = tripDataSource ?? TripDataSourceImpl();
 
   @override
-  Future<String> findBoat() {
-    return tripDataSource.findBoat();
+  Future<Boat> findBoat(String codeBoat, String token) {
+    return tripDataSource.findBoat(codeBoat, token);
   }
 
   @override
-  Future<String> findBooking() {
-    return tripDataSource.findBooking();
+  Future<Booking> findBooking(String codeVoucher, String token) {
+    return tripDataSource.findBooking(codeVoucher, token);
   }
 
   @override
@@ -23,7 +25,7 @@ class TripRepositoryImpl extends TripRepository {
   }
 
   @override
-  Future<String> findToken(String keyToken) {
-    return tripDataSource.findToken(keyToken);
+  Future<Token> findToken() {
+    return tripDataSource.findToken();
   }
 }
