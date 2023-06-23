@@ -13,14 +13,8 @@ final appRouter = GoRouter(
       builder: (context, state) => const MyTripScreen(),
     ),
     GoRoute(
-        path: '/cruise/:id',
-        name: CruiseScreen.name,
-        builder: (context, state) {
-          final String cruiseId = state.pathParameters['id'] ?? 'no-id';
-          if (cruiseId != 'no-id') {
-            return CruiseScreen(cruiceId: int.parse(cruiseId));
-          }
-          return const CruiseScreen(cruiceId: 293);
-        }),
+      path: '/cruise',
+      builder: (context, state) => const CruiseScreen(),
+    ),
   ],
 );

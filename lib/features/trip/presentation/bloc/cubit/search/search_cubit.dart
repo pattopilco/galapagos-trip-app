@@ -2,11 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:galapagos_trip_app/features/trip/domain/domaint.dart';
-import 'package:galapagos_trip_app/features/trip/infraestructure/infraestructura.dart';
 import 'package:galapagos_trip_app/infraestructure/inputs/codevoucher.dart';
-
-import 'package:dio/dio.dart';
-
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchFormState> {

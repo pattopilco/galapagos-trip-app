@@ -14,6 +14,8 @@ A new Flutter project.
 - riverpod 2.3.6
 - open_file: ^3.3.2
 - path_provider: ^2.0.15
+- google_fonts: ^5.1.0
+- carousel_slider: ^4.2.1
 
 ## ARQUITECTURA
 

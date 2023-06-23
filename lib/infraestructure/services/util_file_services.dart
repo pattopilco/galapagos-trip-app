@@ -7,6 +7,8 @@ import 'package:path_provider/path_provider.dart';
 class UtilFileService {
   static String url_upload_app = 'https://galavail.com/upload/app/';
   static String url_upload_cruises = 'https://galavail.com/upload/cruises/';
+  static String url_upload_manual_cabina =
+      'https://galavail.com/upload/documents/cabin%20manual/';
 
   static Future<bool> isDownloadDocument(String documentName) async {
     var directory = (await getApplicationDocumentsDirectory()).path;

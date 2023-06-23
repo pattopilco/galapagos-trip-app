@@ -4,11 +4,9 @@ import '../../domain/repositories/menu_option_repository.dart';
 
 class MenuOptionRepositoryImpl extends MenuOptionRepository {
   final MenuOptionDatasource datasource;
-
   MenuOptionRepositoryImpl(this.datasource);
-
   @override
-  Future<List<MenuOption>> getAllMenuOption() {
+  List<MenuOption> getAllMenuOption() {
     return datasource.getAllMenuOption();
   }
 }
