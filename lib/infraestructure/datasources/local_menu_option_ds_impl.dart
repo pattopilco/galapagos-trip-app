@@ -6,8 +6,7 @@ import '../models/local_menu_options_model.dart';
 
 class LocalMenuOptionDatasource implements MenuOptionDatasource {
   @override
-  Future<List<MenuOption>> getAllMenuOption() async {
-    await Future.delayed(const Duration(seconds: 2));
+  List<MenuOption> getAllMenuOption() {
     final List<MenuOption> newListMenuOption = listMenuOption
         .map(
             (menu) => LocalMenuOptionModel.fromJson(menu).toMenuOptionsEntity())
