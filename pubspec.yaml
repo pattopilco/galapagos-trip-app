@@ -46,9 +46,9 @@ dependencies:
   flutter_riverpod: ^2.3.6
   open_file: ^3.3.2
   path_provider: ^2.0.15
-  google_fonts: ^5.1.0
   carousel_slider: ^4.2.1
   js_interop: ^0.0.1
+  url_launcher: ^6.1.11
 
 
 dev_dependencies:
@@ -76,10 +76,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+    - assets/launcher/logo_galapagos.png
     - assets/images/home/initial_bg.png
     - assets/images/home/logo_galapagos.png
     - assets/images/home/powered-by-galavail.png
-    - assets/images/trip/trip.png
+    - assets/images/menu/trip.png
+    - assets/images/menu/contact_emergency.png
+    - assets/images/emergency/avatar_1.png
+    - assets/images/emergency/avatar_2.png
+    - assets/images/menu/weather_gps.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -106,3 +111,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  ios: true
+  android: 'launcher_icon'
+  image_path: 'assets/launcher/logo_launcher.jpeg'
+  adaptive_icon_background: "assets/launcher/logo_launcher.jpeg"

@@ -33,6 +33,54 @@ class CustomListItem extends StatelessWidget {
               ),
             ],
           ),
+          const Divider(
+            color: Colors.black45,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Documents',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+            ElevatedButton(
+              onPressed: () async {
+                await UtilFileService.openDocument('itinerary.pdf');
+              },
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Itinerary'),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.download,
+                    size: 24.0,
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await UtilFileService.openDocument('voucher.pdf');
+              },
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Voucher'),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.download,
+                    size: 24.0,
+                  ),
+                ],
+              ),
+            ),
+          ])
         ],
       ),
     );
@@ -89,42 +137,7 @@ class _CruiseDescription extends StatelessWidget {
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               )),
-          ElevatedButton(
-            onPressed: () async {
-              await UtilFileService.openDocument('itinerary.pdf');
-            },
-            child: const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Itinerary'),
-                SizedBox(
-                  width: 5,
-                ),
-                Icon(
-                  Icons.download,
-                  size: 24.0,
-                ),
-              ],
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              await UtilFileService.openDocument('voucher.pdf');
-            },
-            child: const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Voucher'),
-                SizedBox(
-                  width: 5,
-                ),
-                Icon(
-                  Icons.download,
-                  size: 24.0,
-                ),
-              ],
-            ),
-          ),
+
           //const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
         ],
       ),

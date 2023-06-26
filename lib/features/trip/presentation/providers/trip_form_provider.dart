@@ -62,7 +62,6 @@ class TripFormNotifier extends StateNotifier<TripFormState> {
 
   void onFormSubmit() async {
     _touchEveryField();
-    print('Submit: $state');
     if (!state.isValid) return;
     await bookingCallback(state.codeVaucher.value);
   }

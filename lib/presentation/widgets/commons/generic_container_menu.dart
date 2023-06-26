@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/presentation/widgets/commons/drawer_container_menu.dart';
-import 'package:galapagos_trip_app/presentation/widgets/commons/generic_app_bar.dart';
+
+import 'generic_app_bar.dart';
 
 class GenericContainerMenu extends StatelessWidget {
   final Widget body;
@@ -10,7 +11,7 @@ class GenericContainerMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black,
+        color: Colors.white,
         child: CustomScrollView(
           slivers: <Widget>[
             const GenericAppBar(),

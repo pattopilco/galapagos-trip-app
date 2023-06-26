@@ -70,7 +70,7 @@ class BookingNotifier extends StateNotifier<BookingState> {
     state = state.copyWith(
       bookingStatus: BookingStatus.notAuthenticated,
       codeBoatDecode: null,
-      boat: getBlankBoat(),
+      boat: _getBlankBoat(),
       errorMessage: errorMessage,
     );
   }
@@ -97,7 +97,7 @@ class BookingNotifier extends StateNotifier<BookingState> {
     UtilFileService.deleteFile('${boat.name}.pdf');
   }
 
-  Boat getBlankBoat() {
+  Boat _getBlankBoat() {
     return Boat(
         code: 0,
         name: '',
@@ -155,29 +155,4 @@ class BookingState {
         boat: boat,
         errorMessage: errorMessage ?? this.errorMessage,
       );
-
-  Boat _getBlankBoat() {
-    return Boat(
-        code: 0,
-        name: '',
-        category: 0,
-        categoryII: '',
-        type: '',
-        passengers: 0,
-        year: 0,
-        length: '',
-        beam: '',
-        draft: '',
-        speed: '',
-        description: '',
-        image: '',
-        minimumAgeChild: 0,
-        maximumAgeChild: 0,
-        itineraryTypes: [],
-        keyFeatures: [],
-        images: [],
-        logo: '',
-        webLink: '',
-        imagesBoat: []);
-  }
 }

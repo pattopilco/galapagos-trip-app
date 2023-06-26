@@ -16,6 +16,7 @@ A new Flutter project.
 - path_provider: ^2.0.15
 - google_fonts: ^5.1.0
 - carousel_slider: ^4.2.1
+- url_launcher: ^6.1.11
 
 ## ARQUITECTURA
 
