@@ -11,7 +11,7 @@ class GenericContainerMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: Colors.black,
         child: CustomScrollView(
           slivers: <Widget>[
             const GenericAppBar(),

@@ -85,6 +85,10 @@ flutter:
     - assets/images/emergency/avatar_1.png
     - assets/images/emergency/avatar_2.png
     - assets/images/menu/weather_gps.png
+    - assets/images/menu/trip_gps.png    
+    - assets/images/before/information_front.jpg
+    - assets/data/local_gps_information.json
+    - assets/images/galapagos/description/gps_map.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

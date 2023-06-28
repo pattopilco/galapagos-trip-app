@@ -16,6 +16,20 @@ List<Map<String, dynamic>> listMenuOption = [
     'image': 'assets/data/boat/all-boats.png'
   },
   {
+    'id': '2',
+    'name': 'BEFORE MY TRIP',
+    'icon': Icons.question_answer,
+    'route': '/before',
+    'image': 'assets/images/before/information_front.jpg'
+  },
+  {
+    'id': '3',
+    'name': 'THE GALAPAGOS ISLANDS',
+    'icon': Icons.map,
+    'route': '/galapagos',
+    'image': 'assets/images/menu/trip_gps.png',
+  },
+  {
     'id': '4',
     'name': 'WEATHER',
     'icon': Icons.cloud_queue,
