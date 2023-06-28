@@ -3,9 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/galapagos/domain/entities/content.dart';
 import 'package:galapagos_trip_app/features/galapagos/providers/gps_information_provider.dart';
 import 'package:galapagos_trip_app/presentation/widgets/commons/generic_container_menu.dart';
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
 import '../domain/entities/information.dart';
 import '../providers/gps_future_information_provider.dart';
 import '../widgets/content_card.dart';
@@ -20,6 +17,7 @@ class GalapagosScreen extends ConsumerWidget {
         ref.watch(listInformationProvider);
 
     final _informationProv = ref.watch(informationProvider);
+    final _informationNoti = ref.watch(informationProvider.notifier);
 
     return GenericContainerMenu(
       body: Container(
@@ -33,6 +31,7 @@ class GalapagosScreen extends ConsumerWidget {
                   return ModalBottomList(
                     listItem: lista,
                     informationProv: _informationProv,
+                    informationNot: _informationNoti,
                   );
                 },
                 error: (err, stack) => Text('Error: $err'),

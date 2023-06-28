@@ -304,6 +304,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
+  photo_view:
+    dependency: "direct main"
+    description:
+      name: photo_view
+      sha256: "8036802a00bae2a78fc197af8a158e3e2f7b500561ed23b4c458107685e645bb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.0"
+  pinch_zoom_release_unzoom:
+    dependency: "direct main"
+    description:
+      name: pinch_zoom_release_unzoom
+      sha256: "504e3ee51a1c5f30c298ef20957dd10cb894b32444f215cc228f3f2c1ef70513"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
+  pinch_zooming:
+    dependency: "direct main"
+    description:
+      name: pinch_zooming
+      sha256: "469d2ce6bc22637fd3b36c199fa26fdbe8d26c08ceeecc6475f8501c938bb789"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   platform:
     dependency: transitive
     description:

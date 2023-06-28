@@ -7,10 +7,15 @@ class GenericContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //bool blockScroll = false;
+    //ScrollController controller = ScrollController();
     return Scaffold(
       body: Container(
         color: Colors.black,
         child: CustomScrollView(
+          //controller: controller,
+          //physics:
+          //    blockScroll ? NeverScrollableScrollPhysics() : ScrollPhysics(),
           slivers: <Widget>[
             const GenericAppBar(),
             SliverToBoxAdapter(

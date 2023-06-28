@@ -25,10 +25,9 @@ class InformationNotifier extends StateNotifier<InformationState> {
 
   Future<void> selectInformation(int id) async {
     late List<Information> listInformation = [];
-    listInformation = repository.getAll() as List<Information>;
-    listInformation.where((element) => element.id == id).toList();
-    listInformation[0];
-    state = state.copyWith(index: id, information: information);
+    final lista = await repository.getAll();
+    listInformation = lista.where((element) => element.id == id).toList();
+    state = state.copyWith(index: id, information: listInformation[0]);
   }
 }
 

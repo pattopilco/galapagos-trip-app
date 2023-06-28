@@ -8,8 +8,12 @@ import 'modal_title_list.dart';
 class ModalBottomList extends StatelessWidget {
   final List<Information> listItem;
   final InformationState informationProv;
+  final InformationNotifier informationNot;
   const ModalBottomList(
-      {super.key, required this.listItem, required this.informationProv});
+      {super.key,
+      required this.listItem,
+      required this.informationProv,
+      required this.informationNot});
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +83,14 @@ class ModalBottomList extends StatelessWidget {
     var titulo = "";
     List<Widget> listItemWidget = [];
     listItem.asMap().forEach((index, element) {
-      //if (index == 0) widget.texto = element["title"];
       listItemWidget.add(ModalTitleList(
           selected: false,
           textStyle: const TextStyle(color: Colors.white),
           title: element.itemTitle,
           onTap: () {
             titulo = element.itemTitle;
-            //onTapFuntion(element.itemTitle);
+            informationNot.selectInformation(element.id);
+            Navigator.of(context).pop();
           }));
       if (index != listItem.length - 1) {
         listItemWidget.add(const Divider(

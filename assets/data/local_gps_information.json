@@ -6,7 +6,7 @@
       {
         "subtitle": "",
         "textContent": "The archipelago is a group of 19 islands: 13 large and 6 small along with dozens of islets. Its closest point to the mainland of Ecuador is 600 miles from the western coast.\n\nThe Galapagos features some of the world’s most unique and endemic species and beautiful beaches that rank among the world’s best. ...And this is why it’s renowned as an iconic tourist destination.",
-        "imageTitle": "assets/data/galapagos/gps_map.png"
+        "imageTitle": "assets/images/galapagos/description/gps_map.png"
       }
     ]
   },
@@ -27,27 +27,27 @@
       {
         "subtitle": "",
         "textContent": "• Galapagos Giant Tortoise, the largest on the planet!",
-        "imageTitle": "assets/data/galapagos/wildlife/giant_tortoise.png"
+        "imageTitle": "assets/images/galapagos/wildlife/giant_tortoise.png"
       },
       {
         "subtitle": "",
         "textContent": "• Galapagos Penguin, the only penguin that lives north of the equator",
-        "imageTitle": "assets/data/galapagos/wildlife/penguins.jpg"
+        "imageTitle": "assets/images/galapagos/wildlife/penguins.jpg"
       },
       {
         "subtitle": "",
         "textContent": "• Sea Lion, the most social mammal on the Islands",
-        "imageTitle": "assets/data/galapagos/wildlife/sealion.jpg"
+        "imageTitle": "assets/images/galapagos/wildlife/sealion.jpg"
       },
       {
         "subtitle": "",
         "textContent": "• Marine Iguana, the only iguana that forages from the sea",
-        "imageTitle": "assets/data/galapagos/wildlife/marine_iguane.jpg"
+        "imageTitle": "assets/images/galapagos/wildlife/marine_iguane.jpg"
       },
       {
         "subtitle": "",
         "textContent": "• Blue-Footed Booby, watch their mating dance and you’ll see how they got their names",
-        "imageTitle": "assets/data/galapagos/wildlife/blue_footed_booby.jpg"
+        "imageTitle": "assets/images/galapagos/wildlife/blue_footed_booby.jpg"
       }
     ]
   },
