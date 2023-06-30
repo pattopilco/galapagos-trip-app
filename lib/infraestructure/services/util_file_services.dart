@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:open_file/open_file.dart';
+import 'dart:async';
+import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// Clase que contiene métodos utilitarios para la descarga de archivos a repositiorio local del dispositivo

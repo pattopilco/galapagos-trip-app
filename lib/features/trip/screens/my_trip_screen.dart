@@ -3,6 +3,7 @@ import 'package:galapagos_trip_app/features/trip/presentation/providers/booking_
 import 'package:galapagos_trip_app/features/trip/presentation/providers/providers.dart';
 import 'package:galapagos_trip_app/presentation/widgets/inputs/text_form_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:progress_state_button/progress_button.dart';
 import '../../../presentation/widgets/commons/generic_container.dart';
 import '../../../presentation/widgets/shared/custom_List_item.dart';
 
@@ -11,25 +12,28 @@ class MyTripScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenericContainer(
-      body: Container(
-        color: Colors.black,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Center(
-                child: Card(
-                  elevation: 8,
-                  child: Container(
-                    padding: const EdgeInsets.all(32.0),
-                    constraints: const BoxConstraints(maxWidth: 350),
-                    child: const SingleChildScrollView(
-                      child: _TripForm(),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: GenericContainer(
+        body: Container(
+          color: Colors.black,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Center(
+                  child: Card(
+                    elevation: 8,
+                    child: Container(
+                      padding: const EdgeInsets.all(32.0),
+                      constraints: const BoxConstraints(maxWidth: 350),
+                      child: const SingleChildScrollView(
+                        child: _TripForm(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -80,6 +84,43 @@ class _TripForm extends ConsumerWidget {
           _gap(),
           SizedBox(
             width: double.infinity,
+            child: ProgressButton(
+              stateWidgets: const {
+                ButtonState.idle: Text(
+                  "Search",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w500),
+                ),
+                ButtonState.loading: Text(
+                  "Loading",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w500),
+                ),
+                ButtonState.fail: Text(
+                  "Fail",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w500),
+                ),
+                ButtonState.success: Text(
+                  "Success",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w500),
+                )
+              },
+              stateColors: {
+                ButtonState.idle: Theme.of(context).colorScheme.primary,
+                ButtonState.loading: Theme.of(context).colorScheme.secondary,
+                ButtonState.fail: Colors.red.shade300,
+                ButtonState.success: Colors.green.shade400,
+              },
+              onPressed: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+                ref.read(tripFormProvider.notifier).onFormSubmit();
+              },
+              state: ButtonState.idle,
+              radius: 4.0,
+            ),
+            /*
             child: FilledButton(
               style: FilledButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -93,9 +134,11 @@ class _TripForm extends ConsumerWidget {
                 ),
               ),
               onPressed: () {
+                FocusManager.instance.primaryFocus?.unfocus();
                 ref.read(tripFormProvider.notifier).onFormSubmit();
               },
             ),
+            */
           ),
           _gap(),
           Visibility(

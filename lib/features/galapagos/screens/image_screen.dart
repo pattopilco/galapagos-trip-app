@@ -8,9 +8,19 @@ class ImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final image = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('View Image'),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        centerTitle: true,
+        title: Image.asset(
+          'assets/launcher/logo_galapagos.png',
+          fit: BoxFit.contain,
+          height: 50,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

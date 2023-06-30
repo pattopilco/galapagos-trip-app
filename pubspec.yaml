@@ -44,7 +44,6 @@ dependencies:
   flutter_dotenv: ^5.1.0
   dio: ^5.2.1+1
   flutter_riverpod: ^2.3.6
-  open_file: ^3.3.2
   path_provider: ^2.0.15
   carousel_slider: ^4.2.1
   js_interop: ^0.0.1
@@ -52,6 +51,8 @@ dependencies:
   pinch_zooming: ^1.0.2
   pinch_zoom_release_unzoom: ^1.0.1
   photo_view: ^0.14.0
+  progress_state_button: ^1.0.4
+  open_file_plus: ^3.4.1
 
 
 dev_dependencies:
@@ -91,12 +92,14 @@ flutter:
     - assets/images/menu/trip_gps.png    
     - assets/images/before/information_front.jpg
     - assets/data/local_gps_information.json
+    - assets/data/local_before_information.json
     - assets/images/galapagos/description/gps_map.png
     - assets/images/galapagos/wildlife/giant_tortoise.png
     - assets/images/galapagos/wildlife/penguins.jpg
     - assets/images/galapagos/wildlife/sealion.jpg
     - assets/images/galapagos/wildlife/marine_iguane.jpg
     - assets/images/galapagos/wildlife/blue_footed_booby.jpg 
+    - assets/images/before/what-to-pack.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,4 +1,5 @@
 # galapagos_trip_app
+Flutter Version: 3.10.5
 
 A new Flutter project.
 
