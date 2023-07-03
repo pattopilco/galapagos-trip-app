@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../config/helpers/responsive.dart';
 import '../../../presentation/widgets/commons/generic_container_menu.dart';
+import '../widgets/galapagos_weather.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -37,33 +38,8 @@ class WeatherScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              const GalapagosWeather(),
               SizedBox(height: Responsive(context).heightp(50) * 0.03),
-              Card(
-                elevation: 10.0,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  height: 170,
-                  color: const Color(0xff293643),
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Galapagos Weather',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25.0,
-                              )),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
         ),

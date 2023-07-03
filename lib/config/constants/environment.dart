@@ -11,4 +11,7 @@ class Environment {
   static String apiFleet = dotenv.env['API_FLEET'] ?? 'Error apiFleet';
   static String apiBooking = dotenv.env['API_BOOKING'] ?? 'Error apiBooking';
   static String apiBoat = dotenv.env['API_BOAT'] ?? 'Error apiBoat';
+
+  static String owmKey = dotenv.env['OWM_KEY'] ?? 'Error Owmkey';
+  static String owmUrl = dotenv.env['OWM_URL'] ?? 'Error OwnUrl';
 }
