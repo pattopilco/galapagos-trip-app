@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/weather_information.dart';
 import '../../../config/helpers/responsive.dart';
 import '../../galapagos/widgets/modal_title_list.dart';
-import '../domain/entities/destination.dart';
-import '../providers/before_information_provider.dart';
+import '../presentation/providers/weather_information_provider.dart';
 
-class ModalFeatureBottomList extends StatelessWidget {
-  final List<Destination> listItem;
-  final BeforeInformationState beforeInformationProv;
-  final BeforeInformationNotifier beforeInformationNoti;
-  const ModalFeatureBottomList({
+class ModalWeatherBottomList extends StatelessWidget {
+  final List<WeatherInformation> listItem;
+  final WeatherInformationState weatherInformationProv;
+  final WeatherInformationNotifier weatherInformationNoti;
+  const ModalWeatherBottomList({
     super.key,
     required this.listItem,
-    required this.beforeInformationProv,
-    required this.beforeInformationNoti,
+    required this.weatherInformationProv,
+    required this.weatherInformationNoti,
   });
 
   @override
@@ -38,11 +38,11 @@ class ModalFeatureBottomList extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      beforeInformationProv.destination.destination,
+                      weatherInformationProv.weatherInformation.itemTitle,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
-                        fontSize: Responsive(context).inchp(12) * 0.2,
+                        fontSize: Responsive(context).inchp(10) * 0.2,
                       ),
                       softWrap: false,
                       maxLines: 2,
@@ -62,7 +62,7 @@ class ModalFeatureBottomList extends StatelessWidget {
     );
   }
 
-  showMenu(BuildContext context, List<Destination> listItem) {
+  showMenu(BuildContext context, List<WeatherInformation> listItem) {
     showModalBottomSheet(
         elevation: 100,
         context: context,
@@ -79,17 +79,18 @@ class ModalFeatureBottomList extends StatelessWidget {
         });
   }
 
-  List<Widget> buildList(BuildContext context, List<Destination> listItem) {
+  List<Widget> buildList(
+      BuildContext context, List<WeatherInformation> listItem) {
     var titulo = "";
     List<Widget> listItemWidget = [];
     listItem.asMap().forEach((index, element) {
       listItemWidget.add(ModalTitleList(
           selected: false,
           textStyle: const TextStyle(color: Colors.white),
-          title: element.destination,
+          title: element.itemTitle,
           onTap: () {
-            titulo = element.destination;
-            beforeInformationNoti.selectBeforeInformation(element.id);
+            titulo = element.itemTitle;
+            weatherInformationNoti.selectWeatherInformation(element.id);
             Navigator.of(context).pop();
           }));
       if (index != listItem.length - 1) {

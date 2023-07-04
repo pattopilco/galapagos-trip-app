@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
 
 import 'current_weather.dart';
+import 'forescast_weather.dart';
 
 class GalapagosWeather extends ConsumerWidget {
   const GalapagosWeather({super.key});
@@ -16,13 +17,12 @@ class GalapagosWeather extends ConsumerWidget {
       children: <Widget>[
         SizedBox(
           width: double.infinity,
-          height: 450,
+          height: 800,
           child: Card(
             elevation: 10.0,
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               height: 100,
-              //color: const Color(0xff293643),
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,13 +33,13 @@ class GalapagosWeather extends ConsumerWidget {
                   const Center(
                     child: Text('Galapagos Weather',
                         style: TextStyle(
-                          //color: Colors.white,
-                          color: Color(0xff293643),
-                          fontSize: 25.0,
-                        )),
+                            //color: Colors.white,
+                            color: Color(0xff293643),
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 25,
                   ),
                   Center(
                     child: SegmentedButton(
@@ -66,7 +66,7 @@ class GalapagosWeather extends ConsumerWidget {
                             label: Text('San Cristobal', textScaleFactor: 0.8)),
                         ButtonSegment(
                             value: IslaFilter.isabela,
-                            label: Text('Isabella', textScaleFactor: 0.8)),
+                            label: Text('Isabela', textScaleFactor: 0.8)),
                       ],
                       selected: <IslaFilter>{currentFilterIsla},
                       onSelectionChanged: (value) {
@@ -76,7 +76,7 @@ class GalapagosWeather extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 45,
                   ),
                   CurrentWeather(
                     cityName: convertName(currentFilterIsla.name),
@@ -90,6 +90,10 @@ class GalapagosWeather extends ConsumerWidget {
                     tempMin: islaOwm.weather.main.tempmin.toString(),
                     tempMax: islaOwm.weather.main.tempmax.toString(),
                     feelsLike: islaOwm.weather.main.feelslike.toString(),
+                    iconMain: islaOwm.weather.weather[0].main.toString(),
+                  ),
+                  ForescastWeather(
+                    forecast: islaOwm.forecast,
                   ),
                 ],
               ),
@@ -102,8 +106,8 @@ class GalapagosWeather extends ConsumerWidget {
 }
 
 String convertName(String isla) {
-  if (IslaFilter.scruz.name == isla) return 'SANTA CRUZ';
-  if (IslaFilter.scristobal.name == isla) return 'SAN CRISTOBAL';
-  if (IslaFilter.isabela.name == isla) return 'ISABELLA';
+  if (IslaFilter.scruz.name == isla) return 'Isla Santa Cruz';
+  if (IslaFilter.scristobal.name == isla) return 'Isla San Cristobal';
+  if (IslaFilter.isabela.name == isla) return 'Isla Isabela';
   return '';
 }

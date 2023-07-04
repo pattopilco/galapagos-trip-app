@@ -50,7 +50,7 @@ class ModalBottomList extends StatelessWidget {
                     ),
                   ),
                   const Icon(
-                    Icons.arrow_drop_down,
+                    Icons.more_horiz,
                     color: Colors.white,
                   )
                 ],

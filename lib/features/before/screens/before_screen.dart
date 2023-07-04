@@ -62,6 +62,7 @@ List<Widget> getCardList(
         title: question.question,
         description: question.ask,
         image: question.imageUrl,
+        link: question.link,
       ));
     });
   }

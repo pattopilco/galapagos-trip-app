@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/features/weather/widgets/weather_info.dart';
 import 'package:intl/intl.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../config/helpers/utils.dart';
 
 class CurrentWeather extends StatelessWidget {
   final String cityName;
@@ -12,6 +15,7 @@ class CurrentWeather extends StatelessWidget {
   final String tempMax;
   final String tempMin;
   final String feelsLike;
+  final String iconMain;
 
   const CurrentWeather(
       {super.key,
@@ -20,6 +24,7 @@ class CurrentWeather extends StatelessWidget {
       required this.humidity,
       required this.pressure,
       required this.iconWeather,
+      required this.iconMain,
       required this.cityName,
       required this.tempMax,
       required this.tempMin,
@@ -27,15 +32,31 @@ class CurrentWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = PageController(viewportFraction: 0.8, keepPage: true);
     return SizedBox(
       width: double.infinity,
-      height: 280,
+      height: 300,
       child: Card(
         elevation: 10.0,
-        color: Color(0xff293643),
+        //color: Color(0xff293643),
+        color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Flexible(
+              flex: 1,
+              child: Center(
+                child: SmoothPageIndicator(
+                  controller: controller,
+                  count: 2,
+                  effect: ExpandingDotsEffect(
+                    activeDotColor: Theme.of(context).colorScheme.primary,
+                    dotHeight: 6,
+                    dotWidth: 6,
+                  ),
+                ),
+              ),
+            ),
             Flexible(
               flex: 2,
               child: Padding(
@@ -43,9 +64,9 @@ class CurrentWeather extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.location_on_outlined,
-                      color: Colors.yellow,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                     Text(
                       cityName,
@@ -65,24 +86,25 @@ class CurrentWeather extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(
-                    image: NetworkImage(
-                        'https://openweathermap.org/img/wn/$iconWeather@2x.png'),
+                  MapString.mapStringToIcon(
+                    iconMain,
+                    55,
                   ),
                   const SizedBox(width: 16.0),
                   Text(
                     temperature,
-                    style: const TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ),
-                  const Text(
-                    '°C',
                     style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.w600,
-                        color: Colors.yellow),
+                        color: Theme.of(context).colorScheme.primary),
+                  ),
+                  Text(
+                    '°C',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
                   ),
                 ],
               ),
@@ -115,9 +137,9 @@ class CurrentWeather extends StatelessWidget {
 }
 
 const TextStyle _style1 = TextStyle(
-  fontWeight: FontWeight.w500,
-  color: Colors.white,
-  fontSize: 33,
+  fontWeight: FontWeight.w700,
+  color: Color(0xff293643),
+  fontSize: 28,
 );
 final TextStyle _style2 = TextStyle(
   fontWeight: FontWeight.w400,

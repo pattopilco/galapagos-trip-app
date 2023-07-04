@@ -1,5 +1,5 @@
 class Rain {
-  String? h;
+  double? h;
 
   Rain({this.h});
 

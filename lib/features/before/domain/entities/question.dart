@@ -2,11 +2,16 @@ class Question {
   final String question;
   final String ask;
   final String imageUrl;
+  final String link;
 
-  Question({required this.question, required this.ask, required this.imageUrl});
+  Question(
+      {required this.question,
+      required this.ask,
+      required this.imageUrl,
+      required this.link});
 
   Question empty() {
-    return Question(question: '', ask: '', imageUrl: '');
+    return Question(question: '', ask: '', imageUrl: '', link: '');
   }
 
   static Question init() {
@@ -14,7 +19,8 @@ class Question {
         question: 'Visa',
         ask:
             'U.S., Canadian and most European citizens do not require a visa to travel to Ecuador unless they are expecting to stay longer than 90 days over the course of 1 year.',
-        imageUrl: '');
+        imageUrl: '',
+        link: '');
   }
 
   static List<Question> listInit() {
@@ -35,6 +41,7 @@ class Question {
     return Question(
         question: json['question'],
         ask: json['ask'],
-        imageUrl: json['imageUrl']);
+        imageUrl: json['imageUrl'],
+        link: json['link']);
   }
 }

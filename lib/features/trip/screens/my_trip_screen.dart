@@ -4,7 +4,7 @@ import 'package:galapagos_trip_app/features/trip/presentation/providers/provider
 import 'package:galapagos_trip_app/presentation/widgets/inputs/text_form_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:progress_state_button/progress_button.dart';
-import '../../../presentation/widgets/commons/generic_container.dart';
+import '../../../presentation/widgets/commons/generic_container_menu.dart';
 import '../../../presentation/widgets/shared/custom_List_item.dart';
 
 class MyTripScreen extends StatelessWidget {
@@ -14,7 +14,7 @@ class MyTripScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: GenericContainer(
+      child: GenericContainerMenu(
         body: Container(
           color: Colors.black,
           child: SingleChildScrollView(

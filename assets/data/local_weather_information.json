@@ -1,0 +1,54 @@
+[
+    {
+      "id":0,
+      "itemTitle": "When is the best time to visit the Galapagos Islands?",
+      "description": [
+        {
+          "subtitle": "",
+          "textContent": "• Good weather for visiting all year round\n\n• Located on the Equator but the weather is not tropical\n\n• Temperature ranges from 69° F-84° F (21° C-30 °C)\n\n• Very little rainfall",
+          "imageTitle": ""
+        },
+        {
+          "subtitle": "The Galapagos Dry Season",
+          "textContent": "From June to December, the currents are brought north towards the Islands bringing cooler waters, blue skies, and midday showers. Because of the perfect water temperatures, it’s a great time for seeing the magnificent marine life with a good dive. Some animals you’re bound to see include giant tortoises, humpback whales, blue-footed boobies, lava lizards and so much more.",
+          "imageTitle": ""
+        },
+        {
+          "subtitle": "The Galapagos Wet Season",
+          "textContent": "From December to May many consider the wet or warm season. During this time, the Island’s climate turns more tropical with daily rain and cloudier skies. With the overcast skies, the ocean temperature stays warmer which makes for great snorkeling and swimming. Popular wildlife seen during this time around the islands are marine iguanas, sea turtles, flamingos, and blue-footed boobies, albatrosses and flamingos.",
+          "imageTitle": ""
+        }
+      ]
+    },
+    {
+      "id":1,  
+      "itemTitle": "What to do in the Galapagos?",
+      "description": [
+        {
+          "subtitle": "",
+          "textContent": "The Islands offers everyone the opportunity to enjoy. With a wide variety of activities for all ages, interests and activity levels and a guide to help you, we have the perfect adventure for you!\n\nSome of the activities include (but are not limited to):\n",
+          "imageTitle": ""
+        },
+        {
+          "subtitle": "Trekking (most popular):",
+          "textContent": "Trekking in the Galapagos gives you the best opportunity to capture what the Islands has to offer.\nFor safety, we also include walking sticks for you to use.",
+          "imageTitle": ""
+        },
+        {
+          "subtitle": "Snorkeling:",
+          "textContent": "Most tours will include snorkeling so you can enjoy the incredible life under the water.\nSnorkeling equipment and wetsuits are provided.",
+          "imageTitle": ""
+        },
+        {
+          "subtitle": "Kayaking:",
+          "textContent": "Paddling alongside the islands is a great way to birdwatch, see schools of baby rays and sharks and other marine life that enjoy the calm, crystal waters of the Galapagos.",
+          "imageTitle": ""
+        },
+        {
+          "subtitle": "Scuba-Diving:",
+          "textContent": "Scuba-diving gives you the most up-close and personal experience of the amazing marine life that the Galapagos Islands has to offer.\nReward yourself with an unforgettable experience.",
+          "imageTitle": ""
+        }
+      ]
+    }
+  ]

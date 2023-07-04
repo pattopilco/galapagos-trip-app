@@ -13,8 +13,8 @@ class Lista {
   final Clouds clouds;
   final Wind wind;
   final int visibility;
-  final double pop;
-  final Rain rain;
+  final dynamic pop;
+  final Rain? rain;
   final Sys sys;
   final String dttxt;
 
@@ -26,25 +26,25 @@ class Lista {
       required this.wind,
       required this.visibility,
       required this.pop,
-      required this.rain,
+      this.rain,
       required this.sys,
       required this.dttxt});
 
   factory Lista.fromJson(Map<String, dynamic> json) {
     return Lista(
         dt: json['dt'],
-        main: json['main'],
-        weather: json['weather'],
-        clouds: json['clouds'],
-        wind: json['wind'],
+        main: Main.fromJson(json['main']),
+        weather: Weather.parseWeather(json['weather']),
+        clouds: Clouds.fromJson(json['clouds']),
+        wind: Wind.fromJson(json['wind']),
         visibility: json['visibility'],
         pop: json['pop'],
-        rain: json['rain'],
-        sys: json['sys'],
+        rain: json['rain'] != null ? Rain.fromJson(json['rain']) : null,
+        sys: Sys.fromJson(json['sys']),
         dttxt: json['dt_txt']);
   }
 
-  static List<Lista> parseQuestions(List<dynamic> listLista) {
+  static List<Lista> parseLista(List<dynamic> listLista) {
     List<Lista> empty = [];
     if (listLista.isEmpty) return empty;
     return listLista.map<Lista>((json) => Lista.fromJson(json)).toList();

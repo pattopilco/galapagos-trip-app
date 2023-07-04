@@ -22,7 +22,7 @@ class Weather {
     return data;
   }
 
-  static List<Weather> parseQuestions(List<dynamic> listWeather) {
+  static List<Weather> parseWeather(List<dynamic> listWeather) {
     List<Weather> empty = [];
     if (listWeather.isEmpty) return empty;
     return listWeather.map<Weather>((json) => Weather.fromJson(json)).toList();

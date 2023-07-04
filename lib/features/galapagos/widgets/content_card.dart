@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/features/galapagos/widgets/wrap_widget.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 //import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 //import 'package:pinch_zooming/pinch_zooming.dart';
 
@@ -10,12 +11,14 @@ class ContentCard extends StatelessWidget {
   final String title;
   final String description;
   final String image;
+  final String? link;
 
   const ContentCard(
       {super.key,
       required this.title,
       required this.description,
-      required this.image});
+      required this.image,
+      this.link});
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +48,33 @@ class ContentCard extends StatelessWidget {
                   visible: description.isNotEmpty,
                   child: WrapWidget(
                     width: Responsive(context).widthp(100),
-                    widget: Text(
-                      description,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: Responsive(context).inchp(8) * 0.2),
+                    widget: Column(
+                      children: [
+                        Text(
+                          description,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: Responsive(context).inchp(8) * 0.2),
+                        ),
+                        Visibility(
+                          visible: _viewLink(link),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: GestureDetector(
+                                child: OutlinedButton(
+                              onPressed: () async {
+                                try {
+                                  await launchUrlString(link ?? '');
+                                } catch (err) {
+                                  debugPrint('Something bad happened');
+                                }
+                              },
+                              child: Text('More Info'),
+                            )),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -132,5 +156,12 @@ class ContentCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool _viewLink(link) {
+    if (link == null) return false;
+    if (link == '') return false;
+    if (link == ' ') return false;
+    return true;
   }
 }

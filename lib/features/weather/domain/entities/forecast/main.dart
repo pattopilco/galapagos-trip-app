@@ -1,13 +1,13 @@
 class Main {
   double? temp;
-  double? feelslike;
+  dynamic feelslike;
   double? tempmin;
   double? tempmax;
   int? pressure;
   int? sealevel;
   int? grndlevel;
   int? humidity;
-  double? tempkf;
+  dynamic tempkf;
 
   Main(
       {this.temp,

@@ -20,8 +20,7 @@ class ForecastResponse {
     cod = json['cod'];
     message = json['message'];
     cnt = json['cnt'];
-    list =
-        json['weather'] != null ? Lista.parseQuestions(json['weather']) : null;
+    list = json['list'] != null ? Lista.parseLista(json['list']) : null;
     city = json['city'] != null ? City?.fromJson(json['city']) : null;
   }
 

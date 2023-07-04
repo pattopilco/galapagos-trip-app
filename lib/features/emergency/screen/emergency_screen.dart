@@ -11,7 +11,7 @@ class EmergencyScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            CardContactWidget(contact: _contacts[0]),
+            //CardContactWidget(contact: _contacts[0]),
             CardContactWidget(contact: _contacts[1]),
           ],
         ),
