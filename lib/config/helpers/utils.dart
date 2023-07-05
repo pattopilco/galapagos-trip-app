@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class UvIndex {
@@ -134,5 +135,17 @@ class Farenheith {
   static String convert(String centigrados) {
     double returnConvertValue = double.parse(centigrados) * 1.8 + 32;
     return returnConvertValue.round().toString();
+  }
+}
+
+class DateFormated {
+  static dynamic dayOfWeek(dynamic date) {
+    return DateFormat('EEE').format(date);
+  }
+
+  static String validateDateNull(String? dateStr) {
+    final dateNow = DateTime.now();
+    if (dateStr == null) return DateFormat('EEE').format(dateNow);
+    return DateFormat('EEE').format(DateTime.parse(dateStr));
   }
 }

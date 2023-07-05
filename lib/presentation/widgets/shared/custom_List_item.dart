@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/infraestructure/services/util_file_services.dart';
-import 'package:go_router/go_router.dart';
+import 'package:progress_state_button/progress_button.dart';
 
-class CustomListItem extends StatelessWidget {
+import '../../../features/trip/presentation/providers/booking_provider.dart';
+
+class CustomListItem extends ConsumerWidget {
   final String code;
   final String cruise;
   const CustomListItem({
@@ -12,77 +15,152 @@ class CustomListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: _CodeTrip(code: code),
-              ),
-              Expanded(
-                flex: 3,
-                child: _CruiseDescription(
-                  code: code,
-                  cruise: cruise,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookingNoti = ref.watch(bookingProvider.notifier);
+    return Column(
+      children: [
+        Card(
+          elevation: 10,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: _CodeTrip(code: code),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          const Divider(
-            color: Colors.black45,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'Documents',
-              style: TextStyle(fontWeight: FontWeight.bold),
+                Column(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: <Widget>[
+                      const Padding(
+                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                          child: Text(
+                            'Itinerary',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                            ),
+                            onPressed: () async {
+                              await UtilFileService.openDocument(
+                                  'itinerary.pdf');
+                            },
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Download',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.download,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                    Row(children: <Widget>[
+                      const Padding(
+                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                          child: Text(
+                            'Voucher',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                            ),
+                            onPressed: () async {
+                              await UtilFileService.openDocument('voucher.pdf');
+                            },
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Download',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.download,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ],
+                )
+              ],
             ),
           ),
-          Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-            ElevatedButton(
-              onPressed: () async {
-                await UtilFileService.openDocument('itinerary.pdf');
-              },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Itinerary'),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.download,
-                    size: 24.0,
-                  ),
-                ],
-              ),
+        ),
+        ProgressButton(
+          stateWidgets: const {
+            ButtonState.idle: Text(
+              "New",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
             ),
-            ElevatedButton(
-              onPressed: () async {
-                await UtilFileService.openDocument('voucher.pdf');
-              },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Voucher'),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.download,
-                    size: 24.0,
-                  ),
-                ],
-              ),
+            ButtonState.loading: Text(
+              "Loading",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
             ),
-          ])
-        ],
-      ),
+            ButtonState.fail: Text(
+              "Fail",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+            ),
+            ButtonState.success: Text(
+              "Success",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+            )
+          },
+          stateColors: {
+            ButtonState.idle: Theme.of(context).colorScheme.primary,
+            ButtonState.loading: Theme.of(context).colorScheme.secondary,
+            ButtonState.fail: Colors.red.shade300,
+            ButtonState.success: Colors.green.shade400,
+          },
+          onPressed: () {
+            //ToDo: QUITAR VOUCHER CODE
+            bookingNoti.logout();
+          },
+          state: ButtonState.idle,
+          radius: 4.0,
+        ),
+      ],
     );
   }
 }
@@ -107,40 +185,6 @@ class _CodeTrip extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _CruiseDescription extends StatelessWidget {
-  const _CruiseDescription({
-    required this.code,
-    required this.cruise,
-  });
-
-  final String code;
-  final String cruise;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          //const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
-          ElevatedButton(
-              style: FilledButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.secondary),
-              onPressed: () => context.go('/cruise'),
-              child: const Text(
-                'Go to my trip',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              )),
-
-          //const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
-        ],
-      ),
     );
   }
 }

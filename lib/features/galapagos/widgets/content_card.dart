@@ -23,7 +23,7 @@ class ContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10.0,
+      //elevation: 10.0,
       child: Column(
         children: <Widget>[
           Padding(

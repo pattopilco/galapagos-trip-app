@@ -12,6 +12,7 @@ class GalapagosWeather extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentFilterIsla = ref.watch(islaFilterProvider);
     final islaOwm = ref.read(filteredIslaProvider);
+    final owmNot = ref.watch(owmProvider.notifier);
 
     return Column(
       children: <Widget>[
@@ -19,7 +20,7 @@ class GalapagosWeather extends ConsumerWidget {
           width: double.infinity,
           height: 800,
           child: Card(
-            elevation: 10.0,
+            //elevation: 10.0,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               height: 100,
@@ -91,6 +92,7 @@ class GalapagosWeather extends ConsumerWidget {
                     tempMax: islaOwm.weather.main.tempmax.toString(),
                     feelsLike: islaOwm.weather.main.feelslike.toString(),
                     iconMain: islaOwm.weather.weather[0].main.toString(),
+                    listDailyWeather: owmNot.getDailyWeather(islaOwm.forecast),
                   ),
                   ForescastWeather(
                     forecast: islaOwm.forecast,

@@ -1,4 +1,4 @@
-import 'package:galapagos_trip_app/features/weather/domain/entities/forecast/weather.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/weather.dart';
 
 import 'clouds.dart';
 import 'main.dart';

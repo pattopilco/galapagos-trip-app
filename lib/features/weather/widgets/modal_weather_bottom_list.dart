@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather_information.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
 import '../../../config/helpers/responsive.dart';
 import '../../galapagos/widgets/modal_title_list.dart';
 import '../presentation/providers/weather_information_provider.dart';
@@ -64,7 +64,7 @@ class ModalWeatherBottomList extends StatelessWidget {
 
   showMenu(BuildContext context, List<WeatherInformation> listItem) {
     showModalBottomSheet(
-        elevation: 100,
+        //elevation: 100,
         context: context,
         builder: (BuildContext context) {
           return Container(

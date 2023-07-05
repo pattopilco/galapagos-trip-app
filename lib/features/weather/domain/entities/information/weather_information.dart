@@ -1,4 +1,4 @@
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather_description.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_description.dart';
 
 class WeatherInformation {
   final int id;

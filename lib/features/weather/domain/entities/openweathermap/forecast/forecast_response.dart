@@ -4,7 +4,7 @@ Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myRootNode = Root.fromJson(map);
 */
 
-import 'package:galapagos_trip_app/features/weather/domain/entities/forecast/list.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/list.dart';
 import 'city.dart';
 
 class ForecastResponse {

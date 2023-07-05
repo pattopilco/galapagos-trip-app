@@ -1,47 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/daily_weather.dart';
 
 import '../../../config/helpers/utils.dart';
 
 class DailyWidget extends StatelessWidget {
-  final weather;
-  final time;
-  final hours;
+  final DailyWeather weather;
 
-  const DailyWidget({super.key, this.time, this.hours, this.weather});
+  const DailyWidget({super.key, required this.weather});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-      child: Material(
-        elevation: 5,
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.0),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Text(
-                hours,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                ),
+      margin: const EdgeInsets.only(right: 8.0),
+      child: Column(
+        children: [
+          FittedBox(
+            child: Text(
+              weather.day.toString(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
               ),
-              const Spacer(),
-              Text(
-                '${weather.dailyTemp.toStringAsFixed(1)}°',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(width: 16.0),
-              MapString.mapStringToIcon(weather.condition, 25),
-            ],
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MapString.mapStringToIcon('${weather.condition}', 35),
+          ),
+          Text('${weather.condition}'),
+        ],
       ),
     );
   }

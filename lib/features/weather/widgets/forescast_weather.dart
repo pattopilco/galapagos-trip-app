@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/forecast/forecast_response.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/forecast_response.dart';
 import 'package:galapagos_trip_app/features/weather/widgets/weather_item_widget.dart';
 
-import '../domain/entities/forecast/list.dart';
+import '../domain/entities/openweathermap/forecast/list.dart';
 
 class ForescastWeather extends StatelessWidget {
   final ForecastResponse forecast;
@@ -14,7 +14,7 @@ class ForescastWeather extends StatelessWidget {
       width: double.infinity,
       height: 300,
       child: Card(
-        elevation: 10.0,
+        //elevation: 10.0,
         //color: Color(0xff293643),
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

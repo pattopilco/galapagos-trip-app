@@ -1,4 +1,4 @@
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather_information.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
 
 import '../../datasources/weather_datasource.dart';
 import '../../repositories/weather_repository.dart';

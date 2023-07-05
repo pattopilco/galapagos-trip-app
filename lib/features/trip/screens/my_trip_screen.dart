@@ -76,51 +76,57 @@ class _TripForm extends ConsumerWidget {
             ),
           ),
           _gap(),
-          CustomTextFormField(
-            onChanged: (value) =>
-                ref.read(tripFormProvider.notifier).codeVoucherChanged(value),
-            errorMessage: searchForm.codeVaucher.errorMessage,
-          ),
-          _gap(),
-          SizedBox(
-            width: double.infinity,
-            child: ProgressButton(
-              stateWidgets: const {
-                ButtonState.idle: Text(
-                  "Search",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w500),
+          Visibility(
+            visible: !isVisible,
+            child: Column(
+              children: [
+                CustomTextFormField(
+                  onChanged: (value) => ref
+                      .read(tripFormProvider.notifier)
+                      .codeVoucherChanged(value),
+                  errorMessage: searchForm.codeVaucher.errorMessage,
                 ),
-                ButtonState.loading: Text(
-                  "Loading",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w500),
-                ),
-                ButtonState.fail: Text(
-                  "Fail",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w500),
-                ),
-                ButtonState.success: Text(
-                  "Success",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w500),
-                )
-              },
-              stateColors: {
-                ButtonState.idle: Theme.of(context).colorScheme.primary,
-                ButtonState.loading: Theme.of(context).colorScheme.secondary,
-                ButtonState.fail: Colors.red.shade300,
-                ButtonState.success: Colors.green.shade400,
-              },
-              onPressed: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-                ref.read(tripFormProvider.notifier).onFormSubmit();
-              },
-              state: ButtonState.idle,
-              radius: 4.0,
-            ),
-            /*
+                _gap(),
+                SizedBox(
+                  width: double.infinity,
+                  child: ProgressButton(
+                    stateWidgets: const {
+                      ButtonState.idle: Text(
+                        "Search",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                      ButtonState.loading: Text(
+                        "Loading",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                      ButtonState.fail: Text(
+                        "Fail",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                      ButtonState.success: Text(
+                        "Success",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      )
+                    },
+                    stateColors: {
+                      ButtonState.idle: Theme.of(context).colorScheme.primary,
+                      ButtonState.loading:
+                          Theme.of(context).colorScheme.secondary,
+                      ButtonState.fail: Colors.red.shade300,
+                      ButtonState.success: Colors.green.shade400,
+                    },
+                    onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      ref.read(tripFormProvider.notifier).onFormSubmit();
+                    },
+                    state: ButtonState.idle,
+                    radius: 4.0,
+                  ),
+                  /*
             child: FilledButton(
               style: FilledButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -139,7 +145,12 @@ class _TripForm extends ConsumerWidget {
               },
             ),
             */
+                ),
+              ],
+            ),
           ),
+//ppilcoa
+
           _gap(),
           Visibility(
               visible: isVisible,

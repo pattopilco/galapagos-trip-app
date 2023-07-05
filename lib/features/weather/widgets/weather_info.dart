@@ -51,7 +51,7 @@ class WeatherInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Material(
-        elevation: 5,
+        //elevation: 5,
         borderRadius: BorderRadius.circular(15),
         color: Colors.white,
         child: Row(

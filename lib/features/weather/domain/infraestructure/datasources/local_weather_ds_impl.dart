@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather_information.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
 
 import '../../datasources/weather_datasource.dart';
 

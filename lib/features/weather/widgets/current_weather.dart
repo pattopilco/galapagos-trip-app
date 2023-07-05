@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/features/weather/widgets/weather_info.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/daily_weather.dart';
+import 'package:galapagos_trip_app/features/weather/widgets/sevenday_forecast.dart';
 import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -16,6 +17,7 @@ class CurrentWeather extends StatelessWidget {
   final String tempMin;
   final String feelsLike;
   final String iconMain;
+  final List<DailyWeather> listDailyWeather;
 
   const CurrentWeather(
       {super.key,
@@ -28,7 +30,8 @@ class CurrentWeather extends StatelessWidget {
       required this.cityName,
       required this.tempMax,
       required this.tempMin,
-      required this.feelsLike});
+      required this.feelsLike,
+      required this.listDailyWeather});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class CurrentWeather extends StatelessWidget {
       width: double.infinity,
       height: 300,
       child: Card(
-        elevation: 10.0,
+        //elevation: 10.0,
         //color: Color(0xff293643),
         color: Colors.white,
         child: Column(
@@ -125,10 +128,7 @@ class CurrentWeather extends StatelessWidget {
                 ],
               ),
             ),
-            WeatherInfo(
-              precip: 'Pre',
-              uvi: 'Uvi',
-            ),
+            SevenDayForecast(listDailyWeather: listDailyWeather),
           ],
         ),
       ),

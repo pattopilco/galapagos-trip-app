@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather_description.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather_information.dart';
+import 'package:galapagos_trip_app/config/config.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_description.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
 import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
 
 import '../../../config/helpers/responsive.dart';
@@ -34,7 +35,7 @@ class WeatherScreen extends ConsumerWidget {
           child: Column(
             children: <Widget>[
               Card(
-                elevation: 10.0,
+                color: Colors.white,
                 child: Column(
                   children: <Widget>[
                     Padding(

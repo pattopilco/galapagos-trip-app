@@ -1,8 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/forecast/forecast_response.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather/weather_response.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/daily_weather.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/forecast_response.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/weather/weather_response.dart';
 import 'package:galapagos_trip_app/features/weather/domain/infraestructure/repositories/openweathermap_repository_impl.dart';
 
+import '../../../../config/helpers/utils.dart';
+import '../../domain/entities/openweathermap/forecast/list.dart';
 import '../../domain/entities/owm_isla.dart';
 import '../../domain/repositories/openweathermap_repository.dart';
 
@@ -58,11 +61,22 @@ class OwmNotifier extends StateNotifier<OwmState> {
 
   Future<void> findWeatherForecast(String lat, String long) async {
     print('>>>>>>>>>>>>>>>>>>>>>>>>findWeatherForecast');
-    print(lat);
-    print(long);
     WeatherResponse weather = await owmRepository.getWeather(lat, long);
     ForecastResponse forecast = await owmRepository.getForecast(lat, long);
     state = state.copyWith(weather: weather, forecast: forecast);
+  }
+
+  List<DailyWeather> getDailyWeather(ForecastResponse forecast) {
+    List<DailyWeather> listaDaily = forecast.list!
+        //.map((l) => DailyWeather(date: DateTime.parse(l!.dttxt)))
+        .map((lista) => DailyWeather(
+            day: DateFormated.validateDateNull(lista!.dttxt.toString())))
+        .toList();
+
+    List<dynamic> lista =
+        listaDaily.map((lis) => DailyWeather().toJson(lis)).toList();
+
+    return listaDaily;
   }
 }
 

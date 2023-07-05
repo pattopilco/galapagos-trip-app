@@ -1,7 +1,7 @@
 import 'package:galapagos_trip_app/features/weather/domain/datasources/openweathermap_datasource.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/forecast/forecast_response.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/forecast_response.dart';
 
-import 'package:galapagos_trip_app/features/weather/domain/entities/weather/weather_response.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/weather/weather_response.dart';
 import 'package:galapagos_trip_app/features/weather/domain/infraestructure/datasources/openweathermap_datasource_imp.dart';
 
 import '../../repositories/openweathermap_repository.dart';

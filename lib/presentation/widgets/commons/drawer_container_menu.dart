@@ -44,15 +44,24 @@ class DrawerContainerMenu extends ConsumerWidget {
         ListTile(
           selected: value.id == menuItemProv.state.index,
           leading: Icon(value.icon),
-          title: Text(value.title),
+          title: Text(
+            value.title,
+            style: _style1,
+          ),
           onTap: () {
             menuItemProv.onClickMenu(id: value.id);
             context.go(value.link);
           },
         ),
       );
-      menuList.add(const Divider());
+      //menuList.add(const Divider());
     });
     return menuList;
   }
 }
+
+const TextStyle _style1 = TextStyle(
+  //fontWeight: FontWeight.w700,
+  color: Color(0xff293643),
+  fontSize: 14,
+);
