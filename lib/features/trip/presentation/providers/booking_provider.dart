@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/constants/encoder.dart';
 import 'package:galapagos_trip_app/features/trip/domain/entities/booking.dart';
 import 'package:galapagos_trip_app/features/trip/infraestructure/infraestructura.dart';
-import 'package:galapagos_trip_app/infraestructure/services/util_file_services.dart';
+import 'package:galapagos_trip_app/config/helpers/util_file_services.dart';
 import '../../domain/domaint.dart';
 
 //Provider

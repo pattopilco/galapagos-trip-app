@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:galapagos_trip_app/config/menu/menu_item.dart';
-import 'package:galapagos_trip_app/presentation/providers/menu_provider.dart';
+import 'package:galapagos_trip_app/features/commons/menu/domain/entities/menu_item.dart';
+import 'package:galapagos_trip_app/features/commons/menu/providers/menu_provider.dart';
 import 'package:go_router/go_router.dart';
-import '../../../features/trip/presentation/providers/booking_provider.dart';
+import '../../../../config/helpers/utils.dart';
+import '../../../trip/presentation/providers/booking_provider.dart';
 import 'drawer_container_menu_header.dart';
 
 class DrawerContainerMenu extends ConsumerWidget {
@@ -21,13 +22,15 @@ class DrawerContainerMenu extends ConsumerWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: buildMenuList(context, menuItemProv.getListMenuItems(),
-            menuItemProv, authenticated),
+            menuItemProv, authenticated,
+            divider: false),
       ),
     );
   }
 
   List<Widget> buildMenuList(BuildContext context, List<MenuItem> menuItemList,
-      MenuNotifier menuItemProv, bool authenticated) {
+      MenuNotifier menuItemProv, bool authenticated,
+      {required divider}) {
     List<Widget> menuList = [];
     menuList.add(const DrawerHeaderRoyal(
       appName: 'MY GALAPAGOS TRIP',
@@ -38,7 +41,7 @@ class DrawerContainerMenu extends ConsumerWidget {
       menuItemList.removeAt(1);
     }
 
-    menuList.add(const Divider());
+    menuList.add(divider == true ? const Divider() : const SizedBox());
     menuItemList.asMap().forEach((index, value) {
       menuList.add(
         ListTile(
@@ -46,7 +49,7 @@ class DrawerContainerMenu extends ConsumerWidget {
           leading: Icon(value.icon),
           title: Text(
             value.title,
-            style: _style1,
+            style: StyleUtil.styleColorPrimaryFont14(context),
           ),
           onTap: () {
             menuItemProv.onClickMenu(id: value.id);
@@ -54,14 +57,8 @@ class DrawerContainerMenu extends ConsumerWidget {
           },
         ),
       );
-      //menuList.add(const Divider());
+      menuList.add(divider == true ? const Divider() : const SizedBox());
     });
     return menuList;
   }
 }
-
-const TextStyle _style1 = TextStyle(
-  //fontWeight: FontWeight.w700,
-  color: Color(0xff293643),
-  fontSize: 14,
-);

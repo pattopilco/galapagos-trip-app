@@ -63,9 +63,10 @@ class ContentCard extends StatelessWidget {
                             alignment: Alignment.bottomRight,
                             child: GestureDetector(
                                 child: OutlinedButton(
-                              onPressed: () async {
+                              onPressed: () {
                                 try {
-                                  await launchUrlString(link ?? '');
+                                  launchUrlString(link ?? '',
+                                      mode: LaunchMode.externalApplication);
                                 } catch (err) {
                                   debugPrint('Something bad happened');
                                 }

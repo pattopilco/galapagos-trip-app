@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:galapagos_trip_app/infraestructure/services/util_file_services.dart';
+import 'package:galapagos_trip_app/config/helpers/util_file_services.dart';
 import 'package:progress_state_button/progress_button.dart';
 
-import '../../../features/trip/presentation/providers/booking_provider.dart';
+import '../presentation/providers/booking_provider.dart';
 
 class CustomListItem extends ConsumerWidget {
   final String code;
@@ -124,10 +124,11 @@ class CustomListItem extends ConsumerWidget {
             ),
           ),
         ),
+        const SizedBox(height: 20),
         ProgressButton(
           stateWidgets: const {
             ButtonState.idle: Text(
-              "New",
+              "New Search",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
             ),

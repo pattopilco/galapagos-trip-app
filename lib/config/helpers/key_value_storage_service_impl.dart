@@ -1,5 +1,6 @@
-import 'package:galapagos_trip_app/infraestructure/services/key_value_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'key_value_storage_service.dart';
 
 class KeyValueStorageServiceImpl extends KeyValueStorageService {
   Future<SharedPreferences> getSharedPrefs() async {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/presentation/widgets/commons/generic_app_bar.dart';
+import 'package:galapagos_trip_app/features/commons/menu/widgets/generic_app_bar.dart';
 
 class GenericContainer extends StatelessWidget {
   final Widget body;

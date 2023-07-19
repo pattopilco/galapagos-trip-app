@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
 import 'package:galapagos_trip_app/features/trip/presentation/providers/booking_provider.dart';
-import 'package:galapagos_trip_app/infraestructure/inputs/codevoucher.dart';
+import 'package:galapagos_trip_app/features/commons/inputs/codevoucher.dart';
 
 //3. Provider
 final tripFormProvider =

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/features/emergency/presentation/widgets/card_contact.dart';
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
+import '../../commons/menu/widgets/generic_container_menu.dart';
 
 class EmergencyScreen extends StatelessWidget {
   const EmergencyScreen({super.key});

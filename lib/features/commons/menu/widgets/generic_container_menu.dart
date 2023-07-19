@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/presentation/widgets/commons/drawer_container_menu.dart';
+import 'package:galapagos_trip_app/features/commons/menu/widgets/drawer_container_menu.dart';
 
 import 'generic_app_bar.dart';
 

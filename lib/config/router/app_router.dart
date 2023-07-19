@@ -3,8 +3,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/before/screens/before_screen.dart';
 import '../../features/cruise/screens/cruise_screen.dart';
 import '../../features/emergency/screen/emergency_screen.dart';
+import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/trip/screens/my_trip_screen.dart';
 import '../../features/weather/screen/weather_screen.dart';
-import '../../presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
   routes: [

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:galapagos_trip_app/features/trip/presentation/providers/booking_provider.dart';
 import 'package:galapagos_trip_app/features/trip/presentation/providers/providers.dart';
-import 'package:galapagos_trip_app/presentation/widgets/inputs/text_form_field.dart';
+import 'package:galapagos_trip_app/features/trip/widgets/text_form_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:progress_state_button/progress_button.dart';
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
-import '../../../presentation/widgets/shared/custom_List_item.dart';
+import '../../commons/menu/widgets/generic_container_menu.dart';
+import '../widgets/custom_List_item.dart';
 
 class MyTripScreen extends StatelessWidget {
   const MyTripScreen({super.key});

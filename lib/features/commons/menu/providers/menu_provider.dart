@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:galapagos_trip_app/config/menu/menu_item.dart';
-import 'package:galapagos_trip_app/infraestructure/repositories/menu_option_repository_impl.dart';
-import '../../domain/entities/menu_option.dart';
-import '../../infraestructure/datasources/local_menu_option_ds_impl.dart';
+import 'package:galapagos_trip_app/features/commons/menu/domain/entities/menu_item.dart';
+import 'package:galapagos_trip_app/features/commons/menu/infraestructure/repositories/menu_option_repository_impl.dart';
+import '../domain/entities/menu_option.dart';
+import '../infraestructure/datasources/local_menu_option_ds_impl.dart';
 
 //1. Provider
 

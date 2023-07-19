@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/helpers/responsive.dart';
-import '../../../infraestructure/services/util_file_services.dart';
+import '../../../config/helpers/util_file_services.dart';
 import '../../trip/presentation/providers/booking_provider.dart';
 
 class TabBarViewManual extends StatelessWidget {

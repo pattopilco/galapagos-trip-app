@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/galapagos/domain/entities/content.dart';
 import 'package:galapagos_trip_app/features/galapagos/providers/gps_information_provider.dart';
-import 'package:galapagos_trip_app/presentation/widgets/commons/generic_container_menu.dart';
+import 'package:galapagos_trip_app/features/commons/menu/widgets/generic_container_menu.dart';
 import '../domain/entities/information.dart';
 import '../providers/gps_future_information_provider.dart';
 import '../widgets/content_card.dart';

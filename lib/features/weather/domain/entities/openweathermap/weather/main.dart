@@ -1,8 +1,8 @@
 class Main {
-  double? temp;
-  double? feelslike;
-  double? tempmin;
-  double? tempmax;
+  dynamic temp;
+  dynamic feelslike;
+  dynamic tempmin;
+  dynamic tempmax;
   int? pressure;
   int? humidity;
   int? sealevel;

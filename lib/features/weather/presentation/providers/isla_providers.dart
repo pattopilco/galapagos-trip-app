@@ -5,7 +5,6 @@ import 'package:galapagos_trip_app/features/weather/domain/entities/openweatherm
 import 'package:galapagos_trip_app/features/weather/domain/infraestructure/repositories/openweathermap_repository_impl.dart';
 
 import '../../../../config/helpers/utils.dart';
-import '../../domain/entities/openweathermap/forecast/list.dart';
 import '../../domain/entities/owm_isla.dart';
 import '../../domain/repositories/openweathermap_repository.dart';
 
@@ -60,7 +59,6 @@ class OwmNotifier extends StateNotifier<OwmState> {
       : super(OwmState(weather: weather, forecast: forecast));
 
   Future<void> findWeatherForecast(String lat, String long) async {
-    print('>>>>>>>>>>>>>>>>>>>>>>>>findWeatherForecast');
     WeatherResponse weather = await owmRepository.getWeather(lat, long);
     ForecastResponse forecast = await owmRepository.getForecast(lat, long);
     state = state.copyWith(weather: weather, forecast: forecast);
@@ -68,15 +66,14 @@ class OwmNotifier extends StateNotifier<OwmState> {
 
   List<DailyWeather> getDailyWeather(ForecastResponse forecast) {
     List<DailyWeather> listaDaily = forecast.list!
-        //.map((l) => DailyWeather(date: DateTime.parse(l!.dttxt)))
         .map((lista) => DailyWeather(
             day: DateFormated.validateDateNull(lista!.dttxt.toString())))
         .toList();
+    var day = Set<String>();
+    List<DailyWeather> uniquelist =
+        listaDaily.where((daily) => day.add(daily.day)).toList();
 
-    List<dynamic> lista =
-        listaDaily.map((lis) => DailyWeather().toJson(lis)).toList();
-
-    return listaDaily;
+    return uniquelist;
   }
 }
 

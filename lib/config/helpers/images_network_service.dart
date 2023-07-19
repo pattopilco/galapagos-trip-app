@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../infraestructure/services/util_file_services.dart';
+import 'util_file_services.dart';
 
 class ImagesNetworkService {
   static Widget buildImage(path, name) {

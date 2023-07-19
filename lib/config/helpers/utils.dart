@@ -149,3 +149,12 @@ class DateFormated {
     return DateFormat('EEE').format(DateTime.parse(dateStr));
   }
 }
+
+class StyleUtil {
+  static TextStyle styleColorPrimaryFont14(BuildContext context) {
+    return TextStyle(
+      color: Theme.of(context).colorScheme.primary,
+      fontSize: 14,
+    );
+  }
+}

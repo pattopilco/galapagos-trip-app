@@ -1,5 +1,5 @@
 class Rain {
-  final double h;
+  final dynamic h;
 
   Rain({required this.h});
 

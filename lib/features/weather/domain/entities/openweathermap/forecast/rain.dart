@@ -1,5 +1,5 @@
 class Rain {
-  double? h;
+  dynamic h;
 
   Rain({this.h});
 

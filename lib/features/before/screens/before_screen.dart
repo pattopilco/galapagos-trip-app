@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/before/domain/entities/destination.dart';
 import 'package:galapagos_trip_app/features/before/domain/entities/question.dart';
 
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
+import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../../galapagos/widgets/content_card.dart';
 import '../providers/before_future_information_provider.dart';
 import '../providers/before_information_provider.dart';

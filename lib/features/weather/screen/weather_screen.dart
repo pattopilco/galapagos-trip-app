@@ -6,7 +6,7 @@ import 'package:galapagos_trip_app/features/weather/domain/entities/information/
 import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
 
 import '../../../config/helpers/responsive.dart';
-import '../../../presentation/widgets/commons/generic_container_menu.dart';
+import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../../galapagos/widgets/content_card.dart';
 import '../presentation/providers/weather_future_information_provider.dart';
 import '../presentation/providers/weather_information_provider.dart';

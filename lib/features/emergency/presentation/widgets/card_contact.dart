@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/config/constants/whatsapp.dart';
+import 'package:galapagos_trip_app/config/helpers/whatsapp.dart';
 import 'package:galapagos_trip_app/features/emergency/screen/emergency_screen.dart';
 
 class CardContactWidget extends StatelessWidget {

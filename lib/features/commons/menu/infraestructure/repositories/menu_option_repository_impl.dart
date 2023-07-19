@@ -1,5 +1,5 @@
-import 'package:galapagos_trip_app/domain/datasources/menu_option_datasource.dart';
-import 'package:galapagos_trip_app/domain/entities/menu_option.dart';
+import 'package:galapagos_trip_app/features/commons/menu/datasources/menu_option_datasource.dart';
+import 'package:galapagos_trip_app/features/commons/menu/domain/entities/menu_option.dart';
 import '../../domain/repositories/menu_option_repository.dart';
 
 class MenuOptionRepositoryImpl extends MenuOptionRepository {

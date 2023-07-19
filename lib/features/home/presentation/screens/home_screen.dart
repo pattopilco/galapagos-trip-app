@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../presentation/widgets/home/button_home_widget.dart';
+import '../../widgets/button_home_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,13 +37,19 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 50),
-                  const Text(
-                    'Welcome to\nMy Galapagos Trip',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
+                  const FittedBox(
+                    child: Padding(
+                      // Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        'Welcome to\nMy Galapagos Trip',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 30),
                   const ButtonHomeWidget(
