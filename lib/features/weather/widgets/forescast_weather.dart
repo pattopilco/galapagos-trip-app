@@ -12,35 +12,29 @@ class ForescastWeather extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 300,
-      child: Card(
-        //elevation: 10.0,
-        //color: Color(0xff293643),
-        color: Colors.white,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SafeArea(
-            top: false,
-            bottom: false,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 270.0,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: _getItems(forecast.list),
-                ),
+      height: 230,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        SafeArea(
+          top: false,
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: 180.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: _getItems(forecast.list),
               ),
             ),
           ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 }
 
 List<Widget> _getItems(List<Lista?>? lista) {
   if (lista != null) {
-    print(lista.length.toString());
     return lista.map((item) {
       return WeatherItem(
         dataText: item!.dttxt.toString(),

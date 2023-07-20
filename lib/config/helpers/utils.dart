@@ -148,6 +148,13 @@ class DateFormated {
     if (dateStr == null) return DateFormat('EEE').format(dateNow);
     return DateFormat('EEE').format(DateTime.parse(dateStr));
   }
+
+  static String validateHourNull(String? dateStr) {
+    print(dateStr);
+    final dateNow = DateTime.now();
+    if (dateStr == null) return DateFormat.Hms().format(dateNow);
+    return DateFormat.Hms().format(DateTime.parse(dateStr));
+  }
 }
 
 class StyleUtil {

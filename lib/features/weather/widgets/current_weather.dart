@@ -38,7 +38,7 @@ class CurrentWeather extends StatelessWidget {
     final controller = PageController(viewportFraction: 0.8, keepPage: true);
     return SizedBox(
       width: double.infinity,
-      height: 300,
+      height: 360,
       child: Card(
         //elevation: 10.0,
         //color: Color(0xff293643),
@@ -75,12 +75,16 @@ class CurrentWeather extends StatelessWidget {
                       cityName,
                       style: _style1,
                     ),
-                    const SizedBox(height: 5.0),
-                    //Text(
-                    //  DateFormat.yMMMEd().add_jm().format(DateTime.now()),
-                    //  style: _style2,
-                    //),
+                    //const SizedBox(height: 5.0),
                   ],
+                ),
+              ),
+            ),
+            Flexible(
+              child: Center(
+                child: Text(
+                  DateFormat.yMMMEd().add_jm().format(DateTime.now()),
+                  style: _style2,
                 ),
               ),
             ),
@@ -126,6 +130,14 @@ class CurrentWeather extends StatelessWidget {
                     style: _style1.copyWith(fontSize: 14),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(width: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Next 6 Days',
+                style: StyleUtil.styleColorPrimaryFont14(context),
               ),
             ),
             SevenDayForecast(listDailyWeather: listDailyWeather),

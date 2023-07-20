@@ -66,8 +66,11 @@ class OwmNotifier extends StateNotifier<OwmState> {
 
   List<DailyWeather> getDailyWeather(ForecastResponse forecast) {
     List<DailyWeather> listaDaily = forecast.list!
-        .map((lista) => DailyWeather(
-            day: DateFormated.validateDateNull(lista!.dttxt.toString())))
+        .map((item) => DailyWeather(
+            day: DateFormated.validateDateNull(item!.dttxt.toString()),
+            hour: DateFormated.validateHourNull(item.dttxt.toString()),
+            condition: item.weather[0].main.toString(),
+            dailyTemp: item.main.temp.round().toString()))
         .toList();
     var day = Set<String>();
     List<DailyWeather> uniquelist =

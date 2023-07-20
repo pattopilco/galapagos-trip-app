@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:galapagos_trip_app/config/config.dart';
 import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_description.dart';
 import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
 import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
@@ -57,7 +56,7 @@ class WeatherScreen extends ConsumerWidget {
                 ),
               ),
               const GalapagosWeather(),
-              SizedBox(height: Responsive(context).heightp(50) * 0.03),
+              //SizedBox(height: Responsive(context).heightp(50) * 0.03),
               _listWeatherInformationProv.when(
                 data: (lista) {
                   return ModalWeatherBottomList(

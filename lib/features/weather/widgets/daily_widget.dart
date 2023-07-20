@@ -27,7 +27,12 @@ class DailyWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: MapString.mapStringToIcon('${weather.condition}', 35),
           ),
-          Text('${weather.condition}'),
+          Text(
+              '${weather.dailyTemp}°C\n${Farenheith.convert(weather.dailyTemp)}°F',
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.bold)),
         ],
       ),
     );

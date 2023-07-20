@@ -34,20 +34,25 @@ class CustomListItem extends ConsumerWidget {
                     ),
                   ],
                 ),
+                const Divider(),
                 Column(
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(children: <Widget>[
                       const Padding(
-                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(Icons.picture_as_pdf_outlined),
+                      ),
+                      const Padding(
+                          padding: EdgeInsets.fromLTRB(3, 3, 15, 3),
                           child: Text(
                             'Itinerary',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 16),
                           )),
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                          padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -67,11 +72,6 @@ class CustomListItem extends ConsumerWidget {
                                 SizedBox(
                                   width: 5,
                                 ),
-                                Icon(
-                                  Icons.download,
-                                  size: 24.0,
-                                  color: Colors.white,
-                                ),
                               ],
                             ),
                           ),
@@ -80,15 +80,19 @@ class CustomListItem extends ConsumerWidget {
                     ]),
                     Row(children: <Widget>[
                       const Padding(
-                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(Icons.picture_as_pdf_outlined),
+                      ),
+                      const Padding(
+                          padding: EdgeInsets.fromLTRB(3, 3, 15, 3),
                           child: Text(
                             'Voucher',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 16),
                           )),
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                          padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -106,11 +110,6 @@ class CustomListItem extends ConsumerWidget {
                                 ),
                                 SizedBox(
                                   width: 5,
-                                ),
-                                Icon(
-                                  Icons.download,
-                                  size: 24.0,
-                                  color: Colors.white,
                                 ),
                               ],
                             ),

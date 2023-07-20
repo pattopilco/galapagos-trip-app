@@ -13,7 +13,7 @@ List<Map<String, dynamic>> listMenuOption = [
     'name': 'MY CRUISE',
     'icon': Icons.directions_boat,
     'route': '/cruise',
-    'image': 'assets/data/boat/all-boats.png'
+    'image': ''
   },
   {
     'id': '2',
