@@ -66,4 +66,19 @@ class Lista {
     listLista.add(lista);
     return listLista;
   }
+
+  static Lista empty() {
+    final Lista lista = Lista(
+        dt: 0,
+        main: Main(),
+        weather: Weather.listEmpty(),
+        clouds: Clouds(),
+        wind: Wind(),
+        visibility: 0,
+        pop: 0,
+        rain: Rain(),
+        sys: Sys(),
+        dttxt: '');
+    return lista;
+  }
 }

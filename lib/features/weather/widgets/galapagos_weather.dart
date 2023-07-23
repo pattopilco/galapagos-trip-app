@@ -1,8 +1,10 @@
+import 'package:dart_date/dart_date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
 
 import '../../../config/helpers/utils.dart';
+import '../presentation/providers/daily_provider.dart';
 import 'current_weather.dart';
 import 'forescast_weather.dart';
 
@@ -14,6 +16,7 @@ class GalapagosWeather extends ConsumerWidget {
     final currentFilterIsla = ref.watch(islaFilterProvider);
     final islaOwm = ref.read(filteredIslaProvider);
     final owmNot = ref.watch(owmProvider.notifier);
+    final dailyProv = ref.watch(dailyProvider);
 
     return Card(
       color: Colors.white,
@@ -104,7 +107,7 @@ class GalapagosWeather extends ConsumerWidget {
                       ),
                     ),
                     ForescastWeather(
-                      forecast: islaOwm.forecast,
+                      listForecast: dailyProv.listForescastDay,
                     ),
                   ],
                 ),

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/forecast_response.dart';
 import 'package:galapagos_trip_app/features/weather/widgets/weather_item_widget.dart';
-
 import '../domain/entities/openweathermap/forecast/list.dart';
 
 class ForescastWeather extends StatelessWidget {
-  final ForecastResponse forecast;
-  const ForescastWeather({super.key, required this.forecast});
+  final List<Lista> listForecast;
+  const ForescastWeather({super.key, required this.listForecast});
 
   @override
   Widget build(BuildContext context) {
+    print('ForescastWeather-listForecast:' + listForecast.length.toString());
     return SizedBox(
       width: double.infinity,
       height: 230,
@@ -23,7 +22,7 @@ class ForescastWeather extends StatelessWidget {
               height: 180.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: _getItems(forecast.list),
+                children: _getItems(listForecast),
               ),
             ),
           ),

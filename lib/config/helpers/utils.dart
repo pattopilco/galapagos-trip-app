@@ -145,12 +145,23 @@ class DateFormated {
 
   static String validateDateNull(String? dateStr) {
     final dateNow = DateTime.now();
-    if (dateStr == null) return DateFormat('EEE').format(dateNow);
-    return DateFormat('EEE').format(DateTime.parse(dateStr));
+    if (dateStr == null || dateStr.isEmpty) {
+      return DateFormat('EEE').format(dateNow);
+    } else {
+      return DateFormat('EEE').format(DateTime.parse(dateStr));
+    }
+  }
+
+  static String validateDateFullNull(String? dateStr) {
+    final dateNow = DateTime.now();
+    if (dateStr == null || dateStr.isEmpty) {
+      return DateFormat.yMd().format(dateNow);
+    } else {
+      return DateFormat.yMd().format(DateTime.parse(dateStr));
+    }
   }
 
   static String validateHourNull(String? dateStr) {
-    print(dateStr);
     final dateNow = DateTime.now();
     if (dateStr == null) return DateFormat.Hms().format(dateNow);
     return DateFormat.Hms().format(DateTime.parse(dateStr));

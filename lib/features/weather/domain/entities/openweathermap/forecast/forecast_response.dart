@@ -11,17 +11,21 @@ class ForecastResponse {
   String? cod;
   int? message;
   int? cnt;
-  List<Lista?>? list;
+  final List<Lista> list;
   City? city;
 
-  ForecastResponse({this.cod, this.message, this.cnt, this.list, this.city});
+  ForecastResponse(
+      {this.cod, this.message, this.cnt, required this.list, this.city});
 
-  ForecastResponse.fromJson(Map<String, dynamic> json) {
-    cod = json['cod'];
-    message = json['message'];
-    cnt = json['cnt'];
-    list = json['list'] != null ? Lista.parseLista(json['list']) : null;
-    city = json['city'] != null ? City?.fromJson(json['city']) : null;
+  factory ForecastResponse.fromJson(Map<String, dynamic> json) {
+    return ForecastResponse(
+        cod: json['cod'],
+        message: json['message'],
+        cnt: json['cnt'],
+        list: json['list'] != null
+            ? Lista.parseLista(json['list'])
+            : Lista.listEmpty(),
+        city: json['city'] != null ? City?.fromJson(json['city']) : null);
   }
 
   static ForecastResponse empty() {

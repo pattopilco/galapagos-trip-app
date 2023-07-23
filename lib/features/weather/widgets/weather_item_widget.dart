@@ -36,9 +36,11 @@ class WeatherItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      DateFormat.yMMMEd()
-                          .add_jm()
-                          .format(DateTime.parse(dataText)),
+                      DateFormat.yMMMEd().format(DateTime.parse(dataText)),
+                      style: _style2,
+                    ),
+                    Text(
+                      DateFormat.jm().format(DateTime.parse(dataText)),
                       style: _style2,
                     ),
                     Text(
@@ -49,15 +51,15 @@ class WeatherItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 15.00,
+                height: 8.00,
               ),
               Text('$temperature°C | ${Farenheith.convert(temperature)}°F',
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 20.0,
+                      fontSize: 15.0,
                       fontWeight: FontWeight.bold)),
               const SizedBox(
-                height: 10.00,
+                height: 5.0,
               ),
             ],
           ),
