@@ -9,10 +9,10 @@ class SevenDayForecast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 110,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         scrollDirection: Axis.horizontal,
         itemCount: listDailyWeather.length,
         itemBuilder: (context, index) {

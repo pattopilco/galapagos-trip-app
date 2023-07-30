@@ -1,10 +1,15 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/constants/encoder.dart';
 import 'package:galapagos_trip_app/features/trip/domain/entities/booking.dart';
 import 'package:galapagos_trip_app/features/trip/infraestructure/infraestructura.dart';
 import 'package:galapagos_trip_app/config/helpers/util_file_services.dart';
+import 'package:galapagos_trip_app/features/trip/infraestructure/mappers/boat_mapper.dart';
+import 'package:intl/intl.dart';
+import '../../../../config/constants/resources.dart';
+import '../../../../config/helpers/key_value_storage_service_impl.dart';
 import '../../domain/domaint.dart';
 
 //Provider
@@ -46,7 +51,7 @@ class BookingNotifier extends StateNotifier<BookingState> {
       : super(BookingState(boat: boat));
 
   Future<void> findBooking(String encodeCodeVoucher) async {
-    _deleteFileStorage(boat);
+    _searching();
     try {
       final decodeCodeVoucher = Encoder.getStringDecode(encodeCodeVoucher);
       Token token = await tripRepository.findToken();
@@ -56,17 +61,26 @@ class BookingNotifier extends StateNotifier<BookingState> {
       Booking booking =
           await tripRepository.findBooking(decodeCodeVoucher, basicAuth);
       final String codeBoat = booking.codeBoat.toString();
-      Boat boat = await tripRepository.findBoat(codeBoat, basicAuth);
-      _setLoggedTrip(booking, boat);
-    } on CustomError catch (e) {
-      logout(e.message);
-    } catch (e) {
-      logout('Unhandled error');
+
+      dynamic boatResponse =
+          await tripRepository.findBoatResponse(codeBoat, basicAuth);
+      Boat boat = BoatMapper.boatJsonToEntity(boatResponse);
+
+      final DateTime now = DateTime.now();
+      final DateFormat formatterNow = DateFormat('MMMM-dd-yyyy');
+      final String formattedNow = formatterNow.format(now);
+
+      _setLoggedTrip(booking, boat, boatResponse, formattedNow);
+    } on Exception catch (e) {
+      log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Unknown exception: $e');
+      logout('$e');
     }
   }
 
   Future<void> logout([String? errorMessage]) async {
-    //TODO: LIMPIAR TOKEN
+    await _deleteFileStorage(state.boat);
+    await _deleteLocalStorageValue();
+    await _deleteImagesLocalStorage(state.boat);
     state = state.copyWith(
       bookingStatus: BookingStatus.notAuthenticated,
       codeBoatDecode: null,
@@ -75,26 +89,124 @@ class BookingNotifier extends StateNotifier<BookingState> {
     );
   }
 
-  void _setLoggedTrip(Booking booking, Boat boat) {
-    UtilFileService.downloadDocument(
+  void _searching() {
+    state = state.copyWith(
+      bookingStatus: BookingStatus.checking,
+      codeBoatDecode: null,
+      boat: _getBlankBoat(),
+      errorMessage: null,
+    );
+  }
+
+  void _setLoggedTrip(Booking booking, Boat boat, dynamic boatResponse,
+      String dateSearch) async {
+    await UtilFileService.downloadDocument(
         booking.documents[0].url, booking.documents[0].name);
-    UtilFileService.downloadDocument(
+    await UtilFileService.downloadDocument(
         booking.documents[1].url, booking.documents[1].name);
-    UtilFileService.downloadDocument(
+    await UtilFileService.downloadDocument(
         '${UtilFileService.url_upload_manual_cabina}${boat.name}.pdf',
         '${boat.name}.pdf');
+    await UtilFileService.downloadDocument(
+        '${Resources.UPLOAD_FLEET}${boat.image}', 'boatImage.jpg');
+    await UtilFileService.downloadDocument(
+        '${Resources.UPLOAD_FLEET}${boat.logo}', 'boatLogo.jpg');
+    await _downloadImagesLocalStorage(boat);
+    String pathLocalStorage =
+        await UtilFileService.getApplicationDocumentsDirectoryRoyal();
+    _saveLocalStorageValue(
+        booking.codeVoucherEncrypted ?? '', boat, boatResponse, dateSearch);
     state = state.copyWith(
+        pathLocalStorage: pathLocalStorage,
         codeBoatDecode: booking.codeVoucherEncrypted,
         bookingStatus: BookingStatus.authenticated,
         boat: boat,
-        nameBoat: boat.name);
-    print('Booking: $state');
+        nameBoat: boat.name,
+        dateSearch: dateSearch);
   }
 
-  void _deleteFileStorage(Boat boat) {
-    UtilFileService.deleteFile('itinerary.pdf');
-    UtilFileService.deleteFile('voucher.pdf');
-    UtilFileService.deleteFile('${boat.name}.pdf');
+  Future<void> _downloadImagesLocalStorage(Boat boat) async {
+    for (var imageBoat in boat.imagesBoat) {
+      await UtilFileService.downloadDocument(
+          '${UtilFileService.url_upload_cruises}${imageBoat.image}',
+          imageBoat.image);
+    }
+  }
+
+  Future<void> _deleteImagesLocalStorage(Boat boat) async {
+    for (var imageBoat in boat.imagesBoat) {
+      await UtilFileService.deleteFile(imageBoat.image);
+    }
+  }
+
+  Future<void> existVoucher(BookingStatus bookingStatus) async {
+    KeyValueStorageServiceImpl keyValueStorageServiceImpl =
+        KeyValueStorageServiceImpl();
+    if (bookingStatus != BookingStatus.authenticated) {
+      if (await keyValueStorageServiceImpl.checkValue('VOUCHER')) {
+        String? dateSearch;
+        String pathLocalStorage;
+        String? boatName;
+        String? boatJson;
+        String? codeVoucher =
+            await keyValueStorageServiceImpl.getValue<String>('VOUCHER');
+        if (await keyValueStorageServiceImpl.checkValue('BOAT')) {
+          boatJson = await keyValueStorageServiceImpl.getValue<String>('BOAT');
+        }
+        if (await keyValueStorageServiceImpl.checkValue('BOATNAME')) {
+          boatName =
+              await keyValueStorageServiceImpl.getValue<String>('BOATNAME');
+        }
+        if (await keyValueStorageServiceImpl.checkValue('DATESEARCH')) {
+          dateSearch =
+              await keyValueStorageServiceImpl.getValue<String>('DATESEARCH');
+        } else {
+          DateTime now = DateTime.now();
+          DateFormat formatterNow = DateFormat('MMMM-dd-yyyy');
+          dateSearch = formatterNow.format(now);
+        }
+
+        pathLocalStorage =
+            await UtilFileService.getApplicationDocumentsDirectoryRoyal();
+        state = state.copyWith(
+            pathLocalStorage: pathLocalStorage,
+            codeBoatDecode: codeVoucher,
+            bookingStatus: BookingStatus.authenticated,
+            boat: BoatMapper.boatJsonToEntity(jsonDecode(boatJson.toString())),
+            nameBoat: boatName.toString(),
+            dateSearch: dateSearch);
+      }
+    }
+  }
+
+  Future<void> _saveLocalStorageValue(String voucher, Boat boat,
+      dynamic boatResponse, String dateSearch) async {
+    final boatResponseDecode = jsonEncode(boatResponse);
+    KeyValueStorageServiceImpl keyValueStorageServiceImpl =
+        KeyValueStorageServiceImpl();
+    await keyValueStorageServiceImpl.setKeyValue<String>('VOUCHER', voucher);
+    await keyValueStorageServiceImpl.setKeyValue<String>(
+        'BOAT', boatResponseDecode);
+    await keyValueStorageServiceImpl.setKeyValue<String>('BOATNAME', boat.name);
+    await keyValueStorageServiceImpl.setKeyValue<String>(
+        'DATESEARCH', dateSearch);
+  }
+
+  Future<void> _deleteLocalStorageValue() async {
+    KeyValueStorageServiceImpl keyValueStorageServiceImpl =
+        KeyValueStorageServiceImpl();
+    await keyValueStorageServiceImpl.removeKey('VOUCHER');
+    await keyValueStorageServiceImpl.removeKey('BOAT');
+    await keyValueStorageServiceImpl.removeKey('BOATNAME');
+    await keyValueStorageServiceImpl.removeKey('DATESEARCH');
+  }
+
+  Future<void> _deleteFileStorage(Boat boat) async {
+    await UtilFileService.deleteFile('itinerary.pdf');
+    await UtilFileService.deleteFile('voucher.pdf');
+    await UtilFileService.deleteFile('${boat.name}.pdf');
+    await UtilFileService.deleteFile('boatImage.jpg');
+    await UtilFileService.deleteFile('boatLogo.jpg');
   }
 
   Boat _getBlankBoat() {
@@ -133,26 +245,33 @@ class BookingState {
   final String nameBoat;
   final Boat boat;
   final String errorMessage;
+  final String pathLocalStorage;
+  final String? dateSearch;
 
-  BookingState(
-      {this.bookingStatus = BookingStatus.checking,
-      this.codeBoatDecode = '',
-      this.nameBoat = '',
-      required this.boat,
-      this.errorMessage = ''});
+  BookingState({
+    this.bookingStatus = BookingStatus.notAuthenticated,
+    this.codeBoatDecode = '',
+    this.nameBoat = '',
+    required this.boat,
+    this.errorMessage = '',
+    this.pathLocalStorage = '',
+    this.dateSearch,
+  });
 
-  BookingState copyWith({
-    BookingStatus? bookingStatus,
-    String? codeBoatDecode,
-    String? nameBoat,
-    required Boat boat,
-    String? errorMessage,
-  }) =>
+  BookingState copyWith(
+          {BookingStatus? bookingStatus,
+          String? codeBoatDecode,
+          String? nameBoat,
+          required Boat boat,
+          String? errorMessage,
+          String? pathLocalStorage,
+          String? dateSearch}) =>
       BookingState(
-        bookingStatus: bookingStatus ?? this.bookingStatus,
-        codeBoatDecode: codeBoatDecode ?? this.codeBoatDecode,
-        nameBoat: nameBoat ?? this.nameBoat,
-        boat: boat,
-        errorMessage: errorMessage ?? this.errorMessage,
-      );
+          bookingStatus: bookingStatus ?? this.bookingStatus,
+          codeBoatDecode: codeBoatDecode ?? this.codeBoatDecode,
+          nameBoat: nameBoat ?? this.nameBoat,
+          boat: boat,
+          errorMessage: errorMessage ?? this.errorMessage,
+          pathLocalStorage: pathLocalStorage ?? this.pathLocalStorage,
+          dateSearch: dateSearch ?? this.dateSearch);
 }

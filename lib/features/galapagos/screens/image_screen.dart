@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ImageScreen extends StatelessWidget {
   const ImageScreen({super.key});
@@ -10,17 +12,33 @@ class ImageScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Colors.black,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        centerTitle: true,
-        title: Image.asset(
-          'assets/launcher/logo_galapagos.png',
-          fit: BoxFit.contain,
-          height: 50,
-        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.share,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              // do something
+              final data = await rootBundle.load(image);
+              final buffer = data.buffer;
+              await Share.shareXFiles(
+                [
+                  XFile.fromData(
+                    buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+                    name: 'image.png',
+                    mimeType: 'image/png',
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

@@ -60,6 +60,7 @@ List<Widget> getCardList(
     descriptionList.asMap().forEach((index, question) {
       listResult.add(ContentCard(
         title: question.question,
+        titleLabel: '',
         description: question.ask,
         image: question.imageUrl,
         link: question.link,

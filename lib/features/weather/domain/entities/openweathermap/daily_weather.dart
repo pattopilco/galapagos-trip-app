@@ -28,4 +28,9 @@ class DailyWeather {
   static empty() {
     return DailyWeather(dt: 0, day: '', hour: '');
   }
+
+  static List<DailyWeather> listEmpty() {
+    List<DailyWeather> list = [];
+    return list;
+  }
 }

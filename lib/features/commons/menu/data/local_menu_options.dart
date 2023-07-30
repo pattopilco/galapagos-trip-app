@@ -6,7 +6,7 @@ List<Map<String, dynamic>> listMenuOption = [
     'name': 'MY TRIP',
     'icon': Icons.card_travel,
     'route': '/trip',
-    'image': 'assets/images/menu/trip.png',
+    'image': 'assets/images/menu/trip.jpg',
   },
   {
     'id': '1',
@@ -24,23 +24,30 @@ List<Map<String, dynamic>> listMenuOption = [
   },
   {
     'id': '3',
+    'name': 'PACKING LIST',
+    'icon': Icons.checklist_rtl,
+    'route': '/packing',
+    'image': 'assets/images/before/information_front.jpg'
+  },
+  {
+    'id': '4',
     'name': 'THE GALAPAGOS ISLANDS',
     'icon': Icons.map,
     'route': '/galapagos',
     'image': 'assets/images/menu/trip_gps.png',
   },
   {
-    'id': '4',
+    'id': '5',
     'name': 'WEATHER',
     'icon': Icons.cloud_queue,
     'route': '/weather',
     'image': 'assets/images/menu/weather_gps.png',
   },
   {
-    'id': '5',
+    'id': '6',
     'name': 'EMERGENCY CONTACT',
     'icon': Icons.contact_phone,
     'route': '/emergency',
-    'image': 'assets/images/menu/contact_emergency.png',
+    'image': 'assets/images/menu/contact_emergency.jpg',
   },
 ];

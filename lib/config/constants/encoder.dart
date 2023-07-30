@@ -2,11 +2,19 @@ import 'dart:convert';
 
 class Encoder {
   static String getStringDecode(String value) {
-    return utf8.decode(base64.decode(value));
+    try {
+      return utf8.decode(base64.decode(value));
+    } on FormatException catch (e) {
+      return '';
+    }
   }
 
   static String getStringEncode(String value) {
-    return base64.encode(utf8.encode(value));
+    try {
+      return base64.encode(utf8.encode(value));
+    } on FormatException catch (e) {
+      return '';
+    }
   }
 
   static dynamic getIntDecode(String value) {

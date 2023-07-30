@@ -18,10 +18,9 @@ class TabBarViewManual extends StatelessWidget {
           physics: const ClampingScrollPhysics(),
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
-            return Card(
+            return SizedBox(
               child: Column(
                 children: [
-                  const SizedBox(height: 20.0),
                   Center(
                     child: Text('${bookingProv.boat.name} Manuals',
                         style: TextStyle(
@@ -38,15 +37,28 @@ class TabBarViewManual extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Cabin Manual",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24.0,
-                                  ),
+                                const Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child:
+                                          Icon(Icons.picture_as_pdf_outlined),
+                                    ),
+                                    Text(
+                                      "Cabin Manual",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24.0,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 4),
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
                                   onPressed: () async {
                                     await UtilFileService.openDocument(
                                         '${bookingProv.boat.name}.pdf');
@@ -54,13 +66,17 @@ class TabBarViewManual extends StatelessWidget {
                                   child: const Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text('Download'),
+                                      Text(
+                                        'Download Document',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                       SizedBox(
                                         width: 5,
                                       ),
                                       Icon(
                                         Icons.download,
                                         size: 24.0,
+                                        color: Colors.white,
                                       ),
                                     ],
                                   ),

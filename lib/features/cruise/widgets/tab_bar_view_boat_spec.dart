@@ -17,10 +17,9 @@ class TabBarViewBoatSpec extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
+          return SizedBox(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 20.0),
                 Center(
                   child: Text('${bookingProv.boat.name} Specifications',
                       style: TextStyle(

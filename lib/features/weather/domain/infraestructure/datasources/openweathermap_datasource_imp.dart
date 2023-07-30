@@ -18,6 +18,13 @@ class OpenweathermapDatasourceImpl implements OpenweathermapDatasource {
   }
 
   @override
+  Future<dynamic> getWeatherResponse(String lat, String long) async {
+    final response =
+        await dio.get('/weather?lat=$lat&lon=$long&units=metric&appid=$apiKey');
+    return response.data;
+  }
+
+  @override
   Future<ForecastResponse> getForecast(String lat, String long) async {
     final response = await dio
         .get('/forecast?lat=$lat&lon=$long&units=metric&appid=$apiKey');
@@ -25,5 +32,12 @@ class OpenweathermapDatasourceImpl implements OpenweathermapDatasource {
     ForecastResponse forecastResponse =
         ForecastResponse.fromJson(response.data);
     return forecastResponse;
+  }
+
+  @override
+  Future<dynamic> getForecastResponse(String lat, String long) async {
+    final response = await dio
+        .get('/forecast?lat=$lat&lon=$long&units=metric&appid=$apiKey');
+    return response.data;
   }
 }

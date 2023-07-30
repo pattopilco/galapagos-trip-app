@@ -38,10 +38,10 @@ class Contact {
 
 final List<Contact> _contacts = [
   Contact(
-      phone: '+(593) 9 80526906',
-      title: 'Sales Department Contact',
+      phone: '+(593) 9 83509004',
+      title: 'Sales Department',
       image: 'assets/images/emergency/avatar_1.png',
-      number: '593980526906',
+      number: '593983509004',
       text: 'Hello, can you help me?',
       assets: 'assets/images/emergency/avatar_1.png'),
   Contact(

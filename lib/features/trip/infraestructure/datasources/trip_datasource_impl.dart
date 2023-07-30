@@ -18,6 +18,13 @@ class TripDataSourceImpl implements TripDataSource {
   }
 
   @override
+  Future<dynamic> findBoatResponse(String codeBoat, String token) async {
+    dio.options.headers["Authorization"] = token;
+    final response = await dio.post('${Environment.apiBoat}/$codeBoat');
+    return response.data[0];
+  }
+
+  @override
   Future<Booking> findBooking(String codeVoucher, String token) async {
     try {
       dio.options.headers["Authorization"] = token;
@@ -31,9 +38,9 @@ class TripDataSourceImpl implements TripDataSource {
       if (e.type == DioExceptionType.connectionTimeout) {
         throw CustomError('Check internet connection');
       }
-      throw Exception();
+      throw Exception('This entered code is invalid.');
     } catch (e) {
-      throw Exception();
+      throw Exception('Please try one more time');
     }
   }
 

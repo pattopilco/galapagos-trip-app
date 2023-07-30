@@ -11,7 +11,7 @@ class ButtonHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String text = 'ENTER';
+    const String text = 'START';
     return FilledButton(
       style: FilledButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.secondary),

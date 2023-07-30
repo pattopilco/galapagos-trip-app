@@ -1,10 +1,7 @@
-import 'package:dart_date/dart_date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
-
 import '../../../config/helpers/utils.dart';
-import '../presentation/providers/daily_provider.dart';
 import 'current_weather.dart';
 import 'forescast_weather.dart';
 
@@ -15,8 +12,7 @@ class GalapagosWeather extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentFilterIsla = ref.watch(islaFilterProvider);
     final islaOwm = ref.read(filteredIslaProvider);
-    final owmNot = ref.watch(owmProvider.notifier);
-    final dailyProv = ref.watch(dailyProvider);
+    final owmProv = ref.watch(owmProvider);
 
     return Card(
       color: Colors.white,
@@ -24,9 +20,8 @@ class GalapagosWeather extends ConsumerWidget {
         children: <Widget>[
           SizedBox(
             width: double.infinity,
-            height: 780,
+            height: 740,
             child: Card(
-              //elevation: 10.0,
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                 height: 100,
@@ -40,7 +35,6 @@ class GalapagosWeather extends ConsumerWidget {
                     const Center(
                       child: Text('Galapagos Weather',
                           style: TextStyle(
-                              //color: Colors.white,
                               color: Color(0xff293643),
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold)),
@@ -96,9 +90,13 @@ class GalapagosWeather extends ConsumerWidget {
                       tempMax: islaOwm.weather.main.tempmax.toString(),
                       feelsLike: islaOwm.weather.main.feelslike.toString(),
                       iconMain: islaOwm.weather.weather[0].main.toString(),
-                      listDailyWeather:
-                          owmNot.getDailyWeather(islaOwm.forecast),
+                      listDailyWeather: owmProv.listNextDays,
                     ),
+                    Text('* Select the day to see the weather details.',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold)),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -106,9 +104,7 @@ class GalapagosWeather extends ConsumerWidget {
                         style: StyleUtil.styleColorPrimaryFont14(context),
                       ),
                     ),
-                    ForescastWeather(
-                      listForecast: dailyProv.listForescastDay,
-                    ),
+                    const ForescastWeather(),
                   ],
                 ),
               ),
@@ -121,8 +117,8 @@ class GalapagosWeather extends ConsumerWidget {
 }
 
 String convertName(String isla) {
-  if (IslaFilter.scruz.name == isla) return 'Isla Santa Cruz';
-  if (IslaFilter.scristobal.name == isla) return 'Isla San Cristobal';
-  if (IslaFilter.isabela.name == isla) return 'Isla Isabela';
+  if (IslaFilter.scruz.name == isla) return 'Santa Cruz Island';
+  if (IslaFilter.scristobal.name == isla) return 'San Cristobal Island';
+  if (IslaFilter.isabela.name == isla) return 'Isabela Island';
   return '';
 }

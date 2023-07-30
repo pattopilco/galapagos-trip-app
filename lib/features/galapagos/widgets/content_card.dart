@@ -9,6 +9,7 @@ import '../screens/image_screen.dart';
 
 class ContentCard extends StatelessWidget {
   final String title;
+  final String titleLabel;
   final String description;
   final String image;
   final String? link;
@@ -16,6 +17,7 @@ class ContentCard extends StatelessWidget {
   const ContentCard(
       {super.key,
       required this.title,
+      required this.titleLabel,
       required this.description,
       required this.image,
       this.link});
@@ -41,6 +43,19 @@ class ContentCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.w900,
                           fontSize: Responsive(context).inchp(12) * 0.2),
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: titleLabel.isNotEmpty,
+                  child: WrapWidget(
+                    width: Responsive(context).widthp(100),
+                    widget: Text(
+                      titleLabel,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontWeight: FontWeight.w900,
+                          fontSize: Responsive(context).inchp(8) * 0.2),
                     ),
                   ),
                 ),
@@ -71,7 +86,7 @@ class ContentCard extends StatelessWidget {
                                   debugPrint('Something bad happened');
                                 }
                               },
-                              child: Text('More Info'),
+                              child: const Text('More Info'),
                             )),
                           ),
                         ),
@@ -106,23 +121,7 @@ class ContentCard extends StatelessWidget {
                           ),
                         );
                       },
-                    )
-
-                    /*
-                  child: PinchZoomReleaseUnzoomWidget(
-                    minScale: 0.8,
-                    maxScale: 4,
-                    resetDuration: const Duration(milliseconds: 200),
-                    boundaryMargin: const EdgeInsets.only(bottom: 0),
-                    clipBehavior: Clip.none,
-                    useOverlay: true,
-                    maxOverlayOpacity: 0.5,
-                    overlayColor: Colors.black,
-                    fingersRequiredToPinch: 2,
-                    child: Image.asset(image),
-                  ),
-                  */
-                    ),
+                    )),
               ],
             ),
           ),

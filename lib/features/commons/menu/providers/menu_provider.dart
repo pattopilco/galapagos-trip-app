@@ -13,7 +13,7 @@ final menuItemProvider = StateNotifierProvider<MenuNotifier, MenuState>((ref) {
       name: 'MY TRIP',
       icon: Icons.card_travel,
       route: '/trip',
-      image: 'assets/images/menu/trip.png');
+      image: 'assets/images/menu/trip.jpg');
   return MenuNotifier(menuOption: menuOptionBlank);
 });
 

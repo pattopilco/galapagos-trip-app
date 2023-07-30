@@ -60,10 +60,11 @@ class TripFormNotifier extends StateNotifier<TripFormState> {
         codeVaucher: newCodeVoucher, isValid: Formz.validate([newCodeVoucher]));
   }
 
-  void onFormSubmit() async {
+  Future<void> onFormSubmit() async {
     _touchEveryField();
     if (!state.isValid) return;
     await bookingCallback(state.codeVaucher.value);
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   _touchEveryField() {

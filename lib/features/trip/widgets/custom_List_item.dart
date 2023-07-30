@@ -6,9 +6,13 @@ import 'package:progress_state_button/progress_button.dart';
 import '../presentation/providers/booking_provider.dart';
 
 class CustomListItem extends ConsumerWidget {
+  final String pathLocalStorage;
   final String code;
   final String cruise;
+  final String dateSearch;
   const CustomListItem({
+    required this.dateSearch,
+    required this.pathLocalStorage,
     super.key,
     required this.code,
     required this.cruise,
@@ -52,7 +56,7 @@ class CustomListItem extends ConsumerWidget {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                          padding: const EdgeInsets.fromLTRB(20, 3, 15, 3),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -92,7 +96,7 @@ class CustomListItem extends ConsumerWidget {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                          padding: const EdgeInsets.fromLTRB(20, 3, 15, 10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -118,7 +122,14 @@ class CustomListItem extends ConsumerWidget {
                       ),
                     ]),
                   ],
-                )
+                ),
+                Text(
+                  'Created At: $dateSearch',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14.0,
+                  ),
+                ),
               ],
             ),
           ),
@@ -169,7 +180,6 @@ class _CodeTrip extends StatelessWidget {
   const _CodeTrip({
     required this.code,
   });
-
   final String code;
 
   @override

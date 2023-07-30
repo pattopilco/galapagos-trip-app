@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "413455479692",
+    "project_id": "galapagostrip-2ecaf",
+    "storage_bucket": "galapagostrip-2ecaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413455479692:android:21c83b9e72c897d7bc5ca9",
+        "android_client_info": {
+          "package_name": "com.royalgalapagos.galapagostrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413455479692-lhteoofdl9bes34i0v7cniimsp27q7ig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.royalgalapagos.galapagostrip",
+            "certificate_hash": "0c66e56cb0350b299c2d5c84d98903da4f4a191b"
+          }
+        },
+        {
+          "client_id": "413455479692-p4r7intd5l0rfv3lgtopb29jd7ciakbf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBesmP4ABKtK-yelKydEO36Z2TAHRLv-3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413455479692-p4r7intd5l0rfv3lgtopb29jd7ciakbf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

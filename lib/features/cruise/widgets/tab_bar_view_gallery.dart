@@ -21,7 +21,6 @@ class TabBarViewGallery extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Column(
             children: <Widget>[
-              const SizedBox(height: 20.0),
               Center(
                 child: Text('${bookingProv.boat.name} Gallery',
                     style: TextStyle(
@@ -31,12 +30,13 @@ class TabBarViewGallery extends StatelessWidget {
               const SizedBox(height: 10.0),
               CarouselSlider(
                 options: CarouselOptions(
+                  height: 310,
                   autoPlay: true,
                   aspectRatio: 2.0,
                   enlargeCenterPage: true,
                 ),
                 items: ImagesNetworkService.buildImagesLabel(
-                    bookingProv.boat.imagesBoat),
+                    bookingProv.pathLocalStorage, bookingProv.boat.imagesBoat),
               ),
             ],
           );

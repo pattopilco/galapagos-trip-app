@@ -17,23 +17,18 @@ class TabBarViewCruise extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
+          return SizedBox(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 20.0),
                 Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    //child: Text(barco[0]['name'] +' Features',
-                    child: Text(
-                      bookingProv.boat.name,
-                      style: TextStyle(
-                          color: const Color(0xff5e1f20),
-                          fontSize: Responsive(context).inchp(12) * 0.2),
-                      softWrap: false,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis, //
-                    ),
+                  child: Text(
+                    bookingProv.boat.name,
+                    style: TextStyle(
+                        color: const Color(0xff5e1f20),
+                        fontSize: Responsive(context).inchp(12) * 0.2),
+                    softWrap: false,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis, //
                   ),
                 ),
                 Padding(

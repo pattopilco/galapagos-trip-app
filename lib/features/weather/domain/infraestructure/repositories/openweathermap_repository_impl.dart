@@ -23,4 +23,14 @@ class OpenweathermapRepositoryImpl extends OpenweathermapRepository {
   Future<WeatherResponse> getWeather(String lat, String long) {
     return openweathermapDatasource.getWeather(lat, long);
   }
+
+  @override
+  Future getForescastResponse(String lat, String long) {
+    return openweathermapDatasource.getForecastResponse(lat, long);
+  }
+
+  @override
+  Future getWeatherResponse(String lat, String long) {
+    return openweathermapDatasource.getWeatherResponse(lat, long);
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:galapagos_trip_app/features/galapagos/screens/galapagos_screen.dart';
+import 'package:galapagos_trip_app/features/packing/screens/packing_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/before/screens/before_screen.dart';
 import '../../features/cruise/screens/cruise_screen.dart';
@@ -24,6 +25,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/before',
       builder: (context, state) => const BeforeScreen(),
+    ),
+    GoRoute(
+      path: '/packing',
+      builder: (context, state) => const PackingScreen(),
     ),
     GoRoute(
       path: '/cruise',

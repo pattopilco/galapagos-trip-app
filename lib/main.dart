@@ -28,9 +28,9 @@ class MyApp extends ConsumerWidget {
     weatherInformationNoti.selectWeatherInformation(0);
     //Carga Inicial de Islas
     final ownNot = ref.watch(owmProvider.notifier);
-    const lat = '-0.63333';
-    const long = '-90.36667';
-    ownNot.findWeatherForecast(lat, long);
+    ownNot.findWeatherForecast(IslaFilter.isabela);
+    ownNot.findWeatherForecast(IslaFilter.scristobal);
+    ownNot.findWeatherForecast(IslaFilter.scruz);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
@@ -38,29 +38,4 @@ class MyApp extends ConsumerWidget {
       theme: AppTheme().theme(),
     );
   }
-
-/*
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    final menuOptionRepository = MenuOptionRepositoryImpl(
-        menuOptionDatasource: LocalMenuOptionDatasource());
-    return MultiProvider(
-      // Se crea provider a nivel global de la aplicación
-      providers: [
-        ChangeNotifierProvider(
-            create: (_) =>
-                HomeProvider(menuOptionRepository: menuOptionRepository)
-                  ..loadNextPage())
-      ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: appRouter,
-        theme: AppTheme().theme(),
-      ),
-    );
-  }
-*/
 }

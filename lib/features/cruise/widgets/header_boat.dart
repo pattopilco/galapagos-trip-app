@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:galapagos_trip_app/config/helpers/util_file_services.dart';
 
+import '../../../config/helpers/images_network_service.dart';
 import '../../../config/helpers/responsive.dart';
 import '../../trip/presentation/providers/booking_provider.dart';
 import '../infraestructure/services/cruise_service.dart';
@@ -17,17 +21,18 @@ class HeaderBoat extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          height: 150,
+          height: 160,
           width: double.infinity,
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
                 _HeaderLogo(
+                    pathLocalStorage: bookingProv.pathLocalStorage,
                     logo: bookingProv.boat.logo,
                     categoriaII: bookingProv.boat.categoryII),
-                const SizedBox(height: 9.0),
+                const SizedBox(height: 20),
                 _HeaderBoat(
                   type: bookingProv.boat.type,
                   passengers: bookingProv.boat.passengers.toString(),
@@ -46,18 +51,20 @@ class HeaderBoat extends ConsumerWidget {
 }
 
 class _HeaderLogo extends StatelessWidget {
+  final String pathLocalStorage;
   final String logo;
   final String categoriaII;
-  const _HeaderLogo({required this.logo, required this.categoriaII});
+  const _HeaderLogo(
+      {required this.logo,
+      required this.categoriaII,
+      required this.pathLocalStorage});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Image(
-          image: NetworkImage('https://galavail.com/upload/fleet/$logo'),
-        ),
+        Image.file(File('${pathLocalStorage}boatLogo.jpg')),
         Text(
           categoriaII,
           style: TextStyle(

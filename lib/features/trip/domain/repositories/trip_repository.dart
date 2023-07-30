@@ -6,4 +6,5 @@ abstract class TripRepository {
   Future<String> findFleet();
   Future<Booking> findBooking(String codeVoucher, String token);
   Future<Boat> findBoat(String codeBoat, String token);
+  Future<dynamic> findBoatResponse(String codeBoat, String token);
 }

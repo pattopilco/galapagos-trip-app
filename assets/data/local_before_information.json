@@ -17,7 +17,7 @@
       },
       {
         "question": "Health & Travel Insurance",
-        "ask": "Although not a requirement, it’s highly recommended to acquire a travel insurance that covers any inconvenience that could occur during your vacation, such as flight cancellations, lost luggage, etc.",
+        "ask": "Although not a requirement, it’s highly recommended to acquire travel insurance that covers any inconvenience that could occur during your vacation, such as flight cancellations, lost luggage, etc.",
         "imageUrl" : "",
         "link":""
       },
@@ -35,8 +35,7 @@
     "description": [
       {
         "question": "International Flights",
-        "ask": "The only way to arrive to the Galapagos via plane is from either Guayaquil or Quito, Ecuador. The reason for this is that the Islands are a protected National Park and there are flight regulations that must be upheld. ",
-        "imageUrl" : "",
+        "ask": "Quito and Guayaquil are the international gateways to Ecuador and conveniently local flights to Galapagos depart from either city easily connecting mainland Ecuador and Galapagos.",
         "link":""
       },
       {
@@ -53,13 +52,13 @@
     "description": [
       {
         "question": "Currency",
-        "ask": "Ecuador adopted the U.S. dollar in 2000 as its official currency. We highly suggest you have enough cash on hand to pay for your needs. Do not bring any large bills (50s and 100s) since they are not accepted in most places throughout Ecuador and the Galapagos. You’ll even find it difficult to exchange at banks as well.",
+        "ask": "Ecuador adopted the U.S. dollar in 2000 as its official currency. We highly suggest you have enough cash on hand to pay for your needs. Do not bring any large bills (50s and 100s) since they are not accepted in most places throughout Ecuador and the Galapagos. You’ll even find it difficult to exchange them at banks as well.",
         "imageUrl" : "",
         "link":""
       },
       {
         "question": "Tips",
-        "ask": "There isn’t an established amount for tipping in Ecuador. Based on your experience and if you think you have received excellent service worthy of tipping, we invite you to do so.\n\nFor example, an average tip would be $20 USD per person for the entire crew and $15 USD per person, per day for the guide.",
+        "ask": "There isn’t an established amount for tipping in Ecuador. Based on your experience and if you think you have received excellent service worthy of tipping, we invite you to do so.\n\nAs a suggestion, an average tip would be $20 USD per person for the entire crew and $15 USD per person, per day for the guide.",
         "imageUrl" : "",
         "link":""
       }
@@ -71,7 +70,7 @@
     "description": [
       {
         "question": "Type of Electrical Outlets",
-        "ask": "There are 110v (2 flat prongs) outlets on all ships and on the mainland. There might be 220v in some areas on some ships, but we recommend that you bring an adapter if needed.",
+        "ask": "There are 110v (2 flat prongs) outlets on all ships and on the mainland. There might be 220v in some areas during your trip, but we recommend that you bring an adapter if needed.",
         "imageUrl" : "",
         "link":""
       },
@@ -90,24 +89,11 @@
     "description": [
       {
         "question": "",
-        "ask": "This Transit Control Card (TCC) is obligatory to enter the Galapagos Islands. It’s valued at $20 USD (payable only in cash at the airports of Quito or Guayaquil.) After receiving your card, your luggage will be inspected at security for items that are not allowed onto the Islands (such as fruits and vegetables).\n\n*Fees are subject to change without prior notice.",
+        "ask": "The Transit Control Card (TCC) is obligatory to enter the Galapagos Islands. It’s valued at $20 USD (payable only in cash at the airports of Quito or Guayaquil.) After receiving your card, your luggage will be inspected at security for items that are not allowed onto the Islands (such as fruits and vegetables).\n\n*Fees are subject to change without prior notice.",
         "imageUrl" : "",
         "link":""
 
       }
     ]
-  },
-  {
-    "id":5,
-    "destination": "Packing List ",
-    "description": [
-      {
-        "question": "",
-        "ask": "Be prepared! Below is a list of recommended clothing gear and other items to be sure to bring so you’re ready for anything. ",
-        "imageUrl" : "assets/images/before/what-to-pack.png",
-        "link":""
-      }
-    ]
   }
-
 ]

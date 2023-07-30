@@ -1,4 +1,4 @@
-package com.example.galapagos_trip_app
+package com.royalgalapagos.galapagostrip
 
 import io.flutter.embedding.android.FlutterActivity
 

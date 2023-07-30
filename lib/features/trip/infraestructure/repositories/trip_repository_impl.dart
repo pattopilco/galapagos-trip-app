@@ -28,4 +28,9 @@ class TripRepositoryImpl extends TripRepository {
   Future<Token> findToken() {
     return tripDataSource.findToken();
   }
+
+  @override
+  Future<dynamic> findBoatResponse(String codeBoat, String token) {
+    return tripDataSource.findBoatResponse(codeBoat, token);
+  }
 }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_description.dart';
 import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
-import 'package:galapagos_trip_app/features/weather/presentation/providers/isla_providers.dart';
-
 import '../../../config/helpers/responsive.dart';
 import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../../galapagos/widgets/content_card.dart';
@@ -23,8 +21,6 @@ class WeatherScreen extends ConsumerWidget {
     final _weatherInformationProv = ref.watch(weatherInformationProvider);
     final _weatherInformationNoti =
         ref.watch(weatherInformationProvider.notifier);
-
-    final ownProv = ref.watch(owmProvider);
 
     return GenericContainerMenu(
       body: Container(
@@ -56,7 +52,6 @@ class WeatherScreen extends ConsumerWidget {
                 ),
               ),
               const GalapagosWeather(),
-              //SizedBox(height: Responsive(context).heightp(50) * 0.03),
               _listWeatherInformationProv.when(
                 data: (lista) {
                   return ModalWeatherBottomList(
@@ -89,6 +84,7 @@ List<Widget> getCardList(
     descriptionList.asMap().forEach((index, description) {
       listResult.add(ContentCard(
         title: description.subtitle,
+        titleLabel: '',
         description: description.textContent,
         image: description.imageTitle,
       ));

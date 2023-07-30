@@ -8,6 +8,12 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService {
   }
 
   @override
+  Future<bool> checkValue(String key) async {
+    final prefs = await getSharedPrefs();
+    return prefs.containsKey(key);
+  }
+
+  @override
   Future<T?> getValue<T>(String key) async {
     final prefs = await getSharedPrefs();
     switch (T) {

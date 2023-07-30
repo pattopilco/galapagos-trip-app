@@ -17,12 +17,11 @@ class DailyWidget extends ConsumerWidget {
     final owmProv = ref.watch(owmProvider);
     return GestureDetector(
       onTap: () {
-        //ToDo: cargar nueva lista
         dailyNotifier.findListForescastForDay(
             owmProv.forecast.list, weather.date ?? DateTime.now());
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 8.0),
+        margin: const EdgeInsets.only(right: 15.0),
         child: Column(
           children: [
             FittedBox(

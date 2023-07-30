@@ -55,6 +55,7 @@ List<Widget> getCardList({required InformationState informationState}) {
     descriptionList.asMap().forEach((index, content) {
       listResult.add(ContentCard(
         title: content.subtitle,
+        titleLabel: content.subtitleLabel,
         description: content.textContent,
         image: content.imageTitle,
       ));

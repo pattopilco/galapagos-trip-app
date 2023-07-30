@@ -3,7 +3,6 @@ import 'package:galapagos_trip_app/features/trip/presentation/providers/booking_
 import 'package:galapagos_trip_app/features/trip/presentation/providers/providers.dart';
 import 'package:galapagos_trip_app/features/trip/widgets/text_form_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:progress_state_button/progress_button.dart';
 import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../widgets/custom_List_item.dart';
 
@@ -25,7 +24,7 @@ class MyTripScreen extends StatelessWidget {
                     elevation: 8,
                     child: Container(
                       padding: const EdgeInsets.all(32.0),
-                      constraints: const BoxConstraints(maxWidth: 350),
+                      constraints: const BoxConstraints(maxWidth: 450),
                       child: const SingleChildScrollView(
                         child: _TripForm(),
                       ),
@@ -46,19 +45,28 @@ class _TripForm extends ConsumerWidget {
 
   void showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.red,
+      padding: const EdgeInsets.all(20),
+      behavior: SnackBarBehavior.floating,
+      //duration: const Duration(milliseconds: 10000)
+    ));
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchForm = ref.watch(tripFormProvider);
     final bookingProv = ref.watch(bookingProvider);
+    final bookingNoti = ref.watch(bookingProvider.notifier);
+    bookingNoti.existVoucher(bookingProv.bookingStatus);
     bool isVisible = bookingProv.bookingStatus == BookingStatus.authenticated;
 
     ref.listen(bookingProvider, (previus, next) {
       if (next.errorMessage.isEmpty) return;
-      showSnackbar(context, next.errorMessage);
+      if (next.bookingStatus == BookingStatus.notAuthenticated) {
+        showSnackbar(context, next.errorMessage);
+      }
     });
 
     return Form(
@@ -89,62 +97,38 @@ class _TripForm extends ConsumerWidget {
                 _gap(),
                 SizedBox(
                   width: double.infinity,
-                  child: ProgressButton(
-                    stateWidgets: const {
-                      ButtonState.idle: Text(
-                        "Search",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      ),
-                      ButtonState.loading: Text(
-                        "Loading",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      ),
-                      ButtonState.fail: Text(
-                        "Fail",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      ),
-                      ButtonState.success: Text(
-                        "Success",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      )
-                    },
-                    stateColors: {
-                      ButtonState.idle: Theme.of(context).colorScheme.primary,
-                      ButtonState.loading:
-                          Theme.of(context).colorScheme.secondary,
-                      ButtonState.fail: Colors.red.shade300,
-                      ButtonState.success: Colors.green.shade400,
-                    },
-                    onPressed: () {
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: bookingProv.bookingStatus == BookingStatus.checking
+                          ? const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 24,
+                                ),
+                                Text('Please Wait'),
+                              ],
+                            )
+                          : const Text(
+                              'Search',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                    ),
+                    onPressed: () async {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       FocusManager.instance.primaryFocus?.unfocus();
                       ref.read(tripFormProvider.notifier).onFormSubmit();
                     },
-                    state: ButtonState.idle,
-                    radius: 4.0,
                   ),
-                  /*
-            child: FilledButton(
-              style: FilledButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  'Search',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-              onPressed: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-                ref.read(tripFormProvider.notifier).onFormSubmit();
-              },
-            ),
-            */
                 ),
               ],
             ),
@@ -155,6 +139,8 @@ class _TripForm extends ConsumerWidget {
           Visibility(
               visible: isVisible,
               child: CustomListItem(
+                dateSearch: bookingProv.dateSearch.toString(),
+                pathLocalStorage: bookingProv.pathLocalStorage,
                 code: bookingProv.codeBoatDecode,
                 cruise: bookingProv.nameBoat,
               )),

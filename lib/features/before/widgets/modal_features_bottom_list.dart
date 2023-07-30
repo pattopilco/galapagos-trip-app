@@ -49,9 +49,20 @@ class ModalFeatureBottomList extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  const Icon(
-                    Icons.more_horiz,
-                    color: Colors.white,
+                  Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                            topRight: Radius.elliptical(10, 10),
+                            bottomLeft: Radius.elliptical(10, 10)),
+                        color: Colors.black12),
+                    height: 35,
+                    width: 40,
+                    child: const Icon(
+                      Icons.more_horiz,
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),

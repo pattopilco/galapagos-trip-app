@@ -3,7 +3,6 @@ import 'package:galapagos_trip_app/features/weather/domain/entities/openweatherm
 import 'package:galapagos_trip_app/features/weather/widgets/sevenday_forecast.dart';
 import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../config/helpers/utils.dart';
 
 class CurrentWeather extends StatelessWidget {
@@ -19,19 +18,20 @@ class CurrentWeather extends StatelessWidget {
   final String iconMain;
   final List<DailyWeather> listDailyWeather;
 
-  const CurrentWeather(
-      {super.key,
-      required this.description,
-      required this.temperature,
-      required this.humidity,
-      required this.pressure,
-      required this.iconWeather,
-      required this.iconMain,
-      required this.cityName,
-      required this.tempMax,
-      required this.tempMin,
-      required this.feelsLike,
-      required this.listDailyWeather});
+  const CurrentWeather({
+    super.key,
+    required this.description,
+    required this.temperature,
+    required this.humidity,
+    required this.pressure,
+    required this.iconWeather,
+    required this.iconMain,
+    required this.cityName,
+    required this.tempMax,
+    required this.tempMin,
+    required this.feelsLike,
+    required this.listDailyWeather,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class CurrentWeather extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 3,
               child: Padding(
                 padding: const EdgeInsets.all(9.5),
                 child: Row(
@@ -81,6 +81,7 @@ class CurrentWeather extends StatelessWidget {
               ),
             ),
             Flexible(
+              flex: 2,
               child: Center(
                 child: Text(
                   DateFormat.yMMMEd().add_jm().format(DateTime.now()),
@@ -89,7 +90,7 @@ class CurrentWeather extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 3,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -101,14 +102,36 @@ class CurrentWeather extends StatelessWidget {
                   Text(
                     temperature,
                     style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 30,
                         fontWeight: FontWeight.w600,
                         color: Theme.of(context).colorScheme.primary),
                   ),
                   Text(
                     '°C',
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                  Text(
+                    '|',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.primary),
+                  ),
+                  Text(
+                    Farenheith.convert(temperature),
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.primary),
+                  ),
+                  Text(
+                    '°F',
+                    style: TextStyle(
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).colorScheme.secondary,
                     ),
@@ -136,7 +159,7 @@ class CurrentWeather extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Next 6 Days',
+                'Next Days',
                 style: StyleUtil.styleColorPrimaryFont14(context),
               ),
             ),

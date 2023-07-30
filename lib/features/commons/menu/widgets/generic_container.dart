@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/commons/menu/widgets/generic_app_bar.dart';
-import '../../../../config/constants/resources.dart';
 import '../../../../config/helpers/images_network_service.dart';
 import '../../../trip/presentation/providers/booking_provider.dart';
 import 'drawer_container_menu.dart';
@@ -20,8 +19,8 @@ class GenericContainer extends ConsumerWidget {
           slivers: <Widget>[
             GenericAppBar(
               title: bookingProv.boat.name.toUpperCase(),
-              image: ImagesNetworkService.buildImage(
-                  Resources.UPLOAD_FLEET, bookingProv.boat.image),
+              image: ImagesNetworkService.buildImageLocalStorage(
+                  '${bookingProv.pathLocalStorage}boatImage.jpg'),
             ),
             SliverToBoxAdapter(
               child: body,

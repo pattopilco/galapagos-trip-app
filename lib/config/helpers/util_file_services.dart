@@ -11,6 +11,15 @@ class UtilFileService {
   static String url_upload_manual_cabina =
       'https://galavail.com/upload/documents/cabin%20manual/';
 
+  static Future<String> getApplicationDocumentsDirectoryRoyal() async {
+    final dir = (await getApplicationDocumentsDirectory()).path;
+    if (dir == null) {
+      throw MissingPlatformDirectoryException(
+          'Unable to get application documents directory');
+    }
+    return '$dir/royal_documents/';
+  }
+
   static Future<bool> isDownloadDocument(String documentName) async {
     var directory = (await getApplicationDocumentsDirectory()).path;
     String path = '$directory/royal_documents/$documentName';
