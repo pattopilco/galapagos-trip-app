@@ -56,7 +56,7 @@ class ModalFeatureBottomList extends StatelessWidget {
                             bottomRight: Radius.circular(10),
                             topRight: Radius.elliptical(10, 10),
                             bottomLeft: Radius.elliptical(10, 10)),
-                        color: Colors.black12),
+                        color: Colors.black26),
                     height: 35,
                     width: 40,
                     child: const Icon(

@@ -37,9 +37,9 @@ class DrawerContainerMenu extends ConsumerWidget {
       title: 'Menu Options',
     ));
 
-    if (!authenticated) {
-      menuItemList.removeAt(1);
-    }
+    //if (!authenticated) {
+    //  menuItemList.removeAt(1);
+    //}
 
     menuList.add(divider == true ? const Divider() : const SizedBox());
     menuItemList.asMap().forEach((index, value) {

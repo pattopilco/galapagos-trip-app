@@ -150,7 +150,6 @@ class OwmNotifier extends StateNotifier<OwmState> {
   Future<void> _removeKeyIsland() async {
     KeyValueStorageServiceImpl keyValueStorageServiceImpl =
         KeyValueStorageServiceImpl();
-    await keyValueStorageServiceImpl.removeKey('FIND_DATE');
     await keyValueStorageServiceImpl.removeKey('WEATHER_ISABELLA');
     await keyValueStorageServiceImpl.removeKey('FORESCAST_ISABELLA');
     await keyValueStorageServiceImpl.removeKey('WEATHER_SCRISTOBAL');

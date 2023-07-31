@@ -50,7 +50,6 @@ class _TripForm extends ConsumerWidget {
       backgroundColor: Colors.red,
       padding: const EdgeInsets.all(20),
       behavior: SnackBarBehavior.floating,
-      //duration: const Duration(milliseconds: 10000)
     ));
   }
 
@@ -103,7 +102,7 @@ class _TripForm extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(4)),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: bookingProv.bookingStatus == BookingStatus.checking
                           ? const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
