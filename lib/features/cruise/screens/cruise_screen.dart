@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/commons/menu/widgets/generic_container.dart';
-import '../../commons/menu/providers/menu_provider.dart';
 import '../../trip/presentation/providers/booking_provider.dart';
 import '../widgets/header_boat.dart';
 import '../widgets/no_authenticated_boat.dart';

@@ -44,7 +44,7 @@ class CustomListItem extends ConsumerWidget {
                   children: [
                     Row(children: <Widget>[
                       const Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(5.0),
                         child: Icon(Icons.picture_as_pdf_outlined),
                       ),
                       const Padding(
@@ -56,7 +56,7 @@ class CustomListItem extends ConsumerWidget {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 3, 15, 3),
+                          padding: const EdgeInsets.fromLTRB(5, 3, 10, 3),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -70,8 +70,13 @@ class CustomListItem extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'Download',
+                                  'View Document',
                                   style: TextStyle(color: Colors.white),
+                                ),
+                                Icon(
+                                  Icons.download_done,
+                                  size: 20.0,
+                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -84,7 +89,7 @@ class CustomListItem extends ConsumerWidget {
                     ]),
                     Row(children: <Widget>[
                       const Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(5.0),
                         child: Icon(Icons.picture_as_pdf_outlined),
                       ),
                       const Padding(
@@ -96,7 +101,7 @@ class CustomListItem extends ConsumerWidget {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 3, 15, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 3, 10, 10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -109,8 +114,13 @@ class CustomListItem extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'Download',
+                                  'View Document',
                                   style: TextStyle(color: Colors.white),
+                                ),
+                                Icon(
+                                  Icons.download_done,
+                                  size: 20.0,
+                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,

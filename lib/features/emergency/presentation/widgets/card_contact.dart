@@ -13,8 +13,8 @@ class CardContactWidget extends StatelessWidget {
         elevation: 8.0,
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          height: 200,
-          width: 550,
+          height: 220,
+          //width: 560,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -22,6 +22,7 @@ class CardContactWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 5),
                   CircleAvatar(
                     radius: 45, //we give the image a radius of 50
                     backgroundColor: const Color.fromARGB(255, 122, 202, 239),
@@ -39,33 +40,26 @@ class CardContactWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      ElevatedButton.icon(
-                        icon: const Icon(
-                          // <-- Icon
-                          Icons.contact_support,
-                          size: 24.0,
-                          color: Colors.white,
-                        ),
-                        style: FilledButton.styleFrom(
-                            backgroundColor: const Color(0xff25D366)),
-                        onPressed: () {
+                      GestureDetector(
+                        onTap: () {
                           Whatsapp().open(
                               context: context,
                               text: contact.text,
                               number: contact.number);
-                        },
-                        label: const Text(
-                          'WhatsApp Chat',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                        }, // Image tapped
+                        child: Image.asset(
+                          'assets/images/emergency/whatsapp.png',
+                          fit: BoxFit.cover, // Fixes border issues
+                          width: 230.0,
+                          height: 90.0,
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              const SizedBox(width: 32),
+              const SizedBox(height: 5),
+              //const SizedBox(width: 32),
               FittedBox(
                 alignment: Alignment.centerRight,
                 fit: BoxFit.fitWidth,

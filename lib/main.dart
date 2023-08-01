@@ -3,9 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/config.dart';
 
 import 'features/before/providers/before_information_provider.dart';
+import 'features/commons/internet/check_internet_connection.dart';
 import 'features/galapagos/providers/gps_information_provider.dart';
 import 'features/weather/presentation/providers/isla_providers.dart';
 import 'features/weather/presentation/providers/weather_information_provider.dart';
+
+final internetChecker = CheckInternetConnection();
 
 void main() async {
   await Environment.initEnvironment();
@@ -17,6 +20,8 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //Check Internet
+    final internetChecker = CheckInternetConnection();
     //Carga Inicial de datos Before
     final beforeInformationNoti = ref.watch(beforeInformationProvider.notifier);
     beforeInformationNoti.selectBeforeInformation(0);

@@ -32,6 +32,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  connectivity_plus: ^4.0.1
   cupertino_icons: ^1.0.2
   dart_date: ^1.2.2
   dio: ^5.2.1+1
@@ -55,6 +56,7 @@ dependencies:
   pinch_zooming: ^1.0.2
   progress_state_button: ^1.0.4
   provider: ^6.0.5
+  rxdart: ^0.27.7
   share_plus: ^7.0.2
   shared_preferences: ^2.1.2
   smooth_page_indicator: ^1.1.0
@@ -89,6 +91,7 @@ flutter:
     - assets/images/menu/contact_emergency.jpg
     - assets/images/emergency/avatar_1.png
     - assets/images/emergency/avatar_2.png
+    - assets/images/emergency/whatsapp.png
     - assets/images/menu/weather_gps.png
     - assets/images/menu/trip_gps.png
     - assets/images/before/information_front.jpg

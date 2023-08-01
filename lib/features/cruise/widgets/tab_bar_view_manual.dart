@@ -67,14 +67,14 @@ class TabBarViewManual extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        'Download Document',
+                                        'View Document',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       SizedBox(
                                         width: 5,
                                       ),
                                       Icon(
-                                        Icons.download,
+                                        Icons.download_done,
                                         size: 24.0,
                                         color: Colors.white,
                                       ),

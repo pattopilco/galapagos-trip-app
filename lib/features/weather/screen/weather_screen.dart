@@ -3,12 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_description.dart';
 import 'package:galapagos_trip_app/features/weather/domain/entities/information/weather_information.dart';
 import '../../../config/helpers/responsive.dart';
+import '../../commons/internet/warning_widget_change_notifier.dart';
 import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../../galapagos/widgets/content_card.dart';
 import '../presentation/providers/weather_future_information_provider.dart';
 import '../presentation/providers/weather_information_provider.dart';
 import '../widgets/galapagos_weather.dart';
 import '../widgets/modal_weather_bottom_list.dart';
+import '../widgets/online_widget_change_notifier.dart';
 
 class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
@@ -51,7 +53,8 @@ class WeatherScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              const GalapagosWeather(),
+              const WarningWidgetChangeNotifier(),
+              const OnlineWidgetChangeNotifier(),
               _listWeatherInformationProv.when(
                 data: (lista) {
                   return ModalWeatherBottomList(
