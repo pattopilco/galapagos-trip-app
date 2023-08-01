@@ -18,7 +18,7 @@ class DailyWidget extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         dailyNotifier.findListForescastForDay(
-            owmProv.forecast.list, weather.date ?? DateTime.now());
+            owmProv.forecast.list, weather.date);
       },
       child: Container(
         margin: const EdgeInsets.only(right: 15.0),

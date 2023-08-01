@@ -3,6 +3,8 @@ import 'package:formz/formz.dart';
 import 'package:galapagos_trip_app/features/trip/presentation/providers/booking_provider.dart';
 import 'package:galapagos_trip_app/features/commons/inputs/codevoucher.dart';
 
+import '../../../../config/helpers/key_value_storage_service_impl.dart';
+
 //3. Provider
 final tripFormProvider =
     StateNotifierProvider.autoDispose<TripFormNotifier, TripFormState>((ref) {
@@ -61,10 +63,15 @@ class TripFormNotifier extends StateNotifier<TripFormState> {
   }
 
   Future<void> onFormSubmit() async {
+    KeyValueStorageServiceImpl keyValueStorageServiceImpl =
+        KeyValueStorageServiceImpl();
     _touchEveryField();
     if (!state.isValid) return;
-    await bookingCallback(state.codeVaucher.value);
-    await Future.delayed(const Duration(seconds: 1));
+
+    if (!await keyValueStorageServiceImpl.checkValue('VOUCHER')) {
+      await bookingCallback(state.codeVaucher.value);
+      await Future.delayed(const Duration(seconds: 1));
+    }
   }
 
   _touchEveryField() {
@@ -75,5 +82,13 @@ class TripFormNotifier extends StateNotifier<TripFormState> {
         isValid: Formz.validate([
           codeVoucher,
         ]));
+  }
+
+  void touchLogout() {
+    state = state.copyWith(
+        isPosting: false,
+        isFormPosted: false,
+        codeVaucher: const CodeVaucher.pure(),
+        isValid: false);
   }
 }

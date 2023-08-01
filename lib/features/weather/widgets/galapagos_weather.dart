@@ -104,7 +104,9 @@ class GalapagosWeather extends ConsumerWidget {
                         style: StyleUtil.styleColorPrimaryFont14(context),
                       ),
                     ),
-                    const ForescastWeather(),
+                    ForescastWeather(
+                      forecast: islaOwm.forecast,
+                    ),
                   ],
                 ),
               ),

@@ -38,7 +38,7 @@ class TripDataSourceImpl implements TripDataSource {
       if (e.type == DioExceptionType.connectionTimeout) {
         throw CustomError('Check internet connection');
       }
-      throw Exception('This entered code is invalid.');
+      throw Exception('The entered code is invalid.');
     } catch (e) {
       throw Exception('Please try one more time');
     }

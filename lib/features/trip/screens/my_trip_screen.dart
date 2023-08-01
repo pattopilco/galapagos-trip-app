@@ -44,6 +44,7 @@ class _TripForm extends ConsumerWidget {
   const _TripForm();
 
   void showSnackbar(BuildContext context, String message) {
+    message = message.replaceAll("Exception:", ""); // myString is "s t r"
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),

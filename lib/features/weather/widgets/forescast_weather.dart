@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:galapagos_trip_app/features/weather/domain/entities/openweathermap/forecast/forecast_response.dart';
 import 'package:galapagos_trip_app/features/weather/widgets/weather_item_widget.dart';
 import '../domain/entities/openweathermap/forecast/list.dart';
 import '../presentation/providers/daily_provider.dart';
 
 class ForescastWeather extends ConsumerWidget {
+  final ForecastResponse forecast;
   const ForescastWeather({
+    required this.forecast,
     super.key,
   });
 
@@ -25,7 +28,9 @@ class ForescastWeather extends ConsumerWidget {
               height: 180.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: _getItems(dailyProv.listForescastDay),
+                children: _getItems(dailyProv.listForescastDay.isEmpty
+                    ? forecast.list
+                    : dailyProv.listForescastDay),
               ),
             ),
           ),

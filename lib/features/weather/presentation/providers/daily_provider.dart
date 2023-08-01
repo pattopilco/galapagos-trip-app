@@ -18,11 +18,16 @@ class DailyNotifier extends StateNotifier<DailyState> {
             listForescastDay: listForescastDay,
             dateDailyForescast: dateDailyForescast));
 
-  void findListForescastForDay(List<Lista> listForescast, DateTime dateTime) {
-    List<Lista> listForescastDay =
-        _listForescastForDate(listForescast, dateTime);
-    state = state.copyWith(
-        listForescastDay: listForescastDay, dateDailyForescast: dateTime);
+  void findListForescastForDay(List<Lista> listForescast, DateTime? dateTime) {
+    if (dateTime == null) {
+      state = state.copyWith(
+          listForescastDay: listForescast, dateDailyForescast: DateTime.now());
+    } else {
+      List<Lista> listForescastDay =
+          _listForescastForDate(listForescast, dateTime);
+      state = state.copyWith(
+          listForescastDay: listForescastDay, dateDailyForescast: dateTime);
+    }
   }
 
   List<Lista> _listForescastForDate(

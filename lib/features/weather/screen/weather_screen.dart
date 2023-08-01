@@ -8,7 +8,6 @@ import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../../galapagos/widgets/content_card.dart';
 import '../presentation/providers/weather_future_information_provider.dart';
 import '../presentation/providers/weather_information_provider.dart';
-import '../widgets/galapagos_weather.dart';
 import '../widgets/modal_weather_bottom_list.dart';
 import '../widgets/online_widget_change_notifier.dart';
 
