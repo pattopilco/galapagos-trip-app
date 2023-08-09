@@ -14,12 +14,34 @@ class GenericAppBar extends StatelessWidget {
       expandedHeight: (MediaQuery.of(context).size.width * 95 / 100) * .5,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(title, style: const TextStyle(color: Colors.white)),
+        titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.white, fontSize: 20),
+          textAlign: TextAlign.center,
+        ),
         centerTitle: true,
         collapseMode: CollapseMode.parallax,
-        background: Container(
-            constraints: const BoxConstraints.expand(height: 1000),
-            child: image),
+        //background: Container(
+        //    constraints: const BoxConstraints.expand(height: 1000),
+        //    child: image),
+        background: Stack(
+          children: [
+            SizedBox.expand(
+              child: image,
+            ),
+            const SizedBox.expand(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0.7, 1.0],
+                        colors: [Colors.transparent, Colors.black87])),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

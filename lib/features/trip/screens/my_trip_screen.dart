@@ -5,6 +5,7 @@ import 'package:galapagos_trip_app/features/trip/widgets/text_form_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../commons/menu/widgets/generic_container_menu.dart';
 import '../widgets/custom_List_item.dart';
+import '../widgets/search_widget_change_notifier.dart';
 
 class MyTripScreen extends StatelessWidget {
   const MyTripScreen({super.key});
@@ -56,19 +57,18 @@ class _TripForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final tripFormNoti = ref.read(tripFormProvider.notifier);
     final searchForm = ref.watch(tripFormProvider);
     final bookingProv = ref.watch(bookingProvider);
-    final bookingNoti = ref.watch(bookingProvider.notifier);
+    final bookingNoti = ref.read(bookingProvider.notifier);
     bookingNoti.existVoucher(bookingProv.bookingStatus);
     bool isVisible = bookingProv.bookingStatus == BookingStatus.authenticated;
-
     ref.listen(bookingProvider, (previus, next) {
       if (next.errorMessage.isEmpty) return;
       if (next.bookingStatus == BookingStatus.notAuthenticated) {
         showSnackbar(context, next.errorMessage);
       }
     });
-
     return Form(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -97,44 +97,14 @@ class _TripForm extends ConsumerWidget {
                 _gap(),
                 SizedBox(
                   width: double.infinity,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4)),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: bookingProv.bookingStatus == BookingStatus.checking
-                          ? const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 24,
-                                ),
-                                Text('Please Wait'),
-                              ],
-                            )
-                          : const Text(
-                              'Search',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                    ),
-                    onPressed: () async {
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      ref.read(tripFormProvider.notifier).onFormSubmit();
-                    },
+                  child: SearchWidgetChangeNotifier(
+                    bookingProv: bookingProv,
+                    tripFormNoti: tripFormNoti,
                   ),
                 ),
               ],
             ),
           ),
-//ppilcoa
-
           _gap(),
           Visibility(
               visible: isVisible,

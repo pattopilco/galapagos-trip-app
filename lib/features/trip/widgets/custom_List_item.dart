@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/helpers/util_file_services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:progress_state_button/progress_button.dart';
-
 import '../presentation/providers/booking_provider.dart';
 import '../presentation/providers/trip_form_provider.dart';
 
@@ -134,7 +132,7 @@ class CustomListItem extends ConsumerWidget {
                 ],
               ),
               Text(
-                'Created At: $dateSearch',
+                'Downloaded: $dateSearch',
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14.0,

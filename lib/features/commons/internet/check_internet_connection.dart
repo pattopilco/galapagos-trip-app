@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../config/helpers/util_file_services.dart';
+
 enum ConnectionStatus { online, offLine }
 
 class CheckInternetConnection {

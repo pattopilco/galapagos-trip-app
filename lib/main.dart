@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/config.dart';
 
+import 'config/helpers/util_file_services.dart';
 import 'features/before/providers/before_information_provider.dart';
 import 'features/commons/internet/check_internet_connection.dart';
 import 'features/galapagos/providers/gps_information_provider.dart';

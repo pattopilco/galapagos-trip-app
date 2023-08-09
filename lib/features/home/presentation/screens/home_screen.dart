@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Spacer(),
+                  const Spacer(),
                   ClipOval(
                     child: Container(
                       width: 150,
@@ -56,14 +57,19 @@ class HomeScreen extends StatelessWidget {
                     goToPage: "/trip",
                   ),
                   const Spacer(),
+                  const Spacer(),
+                  const Text(
+                    'from',
+                    style: TextStyle(color: Colors.white60, fontSize: 16),
+                  ),
                   Container(
-                    height: 80,
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/images/home/powered-by-galavail.png',
-                      scale: 2.0,
-                    ),
-                  )
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        'assets/images/home/galavail.png',
+                        scale: 2.0,
+                      )),
+                  const Spacer(),
                 ],
               ),
             )

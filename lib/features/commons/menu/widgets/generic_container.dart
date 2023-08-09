@@ -6,8 +6,10 @@ import '../../../trip/presentation/providers/booking_provider.dart';
 import 'drawer_container_menu.dart';
 
 class GenericContainer extends ConsumerWidget {
+  final bool authenticated;
   final Widget body;
-  const GenericContainer({super.key, required this.body});
+  const GenericContainer(
+      {super.key, required this.body, required this.authenticated});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,8 +21,11 @@ class GenericContainer extends ConsumerWidget {
           slivers: <Widget>[
             GenericAppBar(
               title: bookingProv.boat.name.toUpperCase(),
-              image: ImagesNetworkService.buildImageLocalStorage(
-                  '${bookingProv.pathLocalStorage}boatImage.jpg'),
+              image: authenticated == true
+                  ? ImagesNetworkService.buildImageLocalStorage(
+                      '${bookingProv.pathLocalStorage}${bookingProv.boat.image}')
+                  : ImagesNetworkService.buildImageLocalStorage(
+                      '${bookingProv.pathLocalStorage}loadingBoat.gif'),
             ),
             SliverToBoxAdapter(
               child: body,

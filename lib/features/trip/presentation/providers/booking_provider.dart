@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:galapagos_trip_app/config/constants/encoder.dart';
@@ -67,12 +66,10 @@ class BookingNotifier extends StateNotifier<BookingState> {
       Boat boat = BoatMapper.boatJsonToEntity(boatResponse);
 
       final DateTime now = DateTime.now();
-      final DateFormat formatterNow = DateFormat('MMMM-dd-yyyy');
+      final DateFormat formatterNow = DateFormat.yMMMMd('en_US');
       final String formattedNow = formatterNow.format(now);
-
       _setLoggedTrip(booking, boat, boatResponse, formattedNow);
     } on Exception catch (e) {
-      log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Unknown exception: $e');
       logout('$e');
     }
   }
@@ -108,12 +105,13 @@ class BookingNotifier extends StateNotifier<BookingState> {
         '${UtilFileService.url_upload_manual_cabina}${boat.name}.pdf',
         '${boat.name}.pdf');
     await UtilFileService.downloadDocument(
-        '${Resources.UPLOAD_FLEET}${boat.image}', 'boatImage.jpg');
+        '${Resources.UPLOAD_FLEET}${boat.image}', boat.image);
     await UtilFileService.downloadDocument(
-        '${Resources.UPLOAD_FLEET}${boat.logo}', 'boatLogo.jpg');
+        '${Resources.UPLOAD_FLEET}${boat.logo}', boat.logo);
     await _downloadImagesLocalStorage(boat);
     String pathLocalStorage =
         await UtilFileService.getApplicationDocumentsDirectoryRoyal();
+
     _saveLocalStorageValue(
         booking.codeVoucherEncrypted ?? '', boat, boatResponse, dateSearch);
     state = state.copyWith(
@@ -142,40 +140,42 @@ class BookingNotifier extends StateNotifier<BookingState> {
   Future<void> existVoucher(BookingStatus bookingStatus) async {
     KeyValueStorageServiceImpl keyValueStorageServiceImpl =
         KeyValueStorageServiceImpl();
-    if (bookingStatus != BookingStatus.authenticated) {
-      if (await keyValueStorageServiceImpl.checkValue('VOUCHER')) {
-        String? dateSearch;
-        String pathLocalStorage;
-        String? boatName;
-        String? boatJson;
-        String? codeVoucher =
-            await keyValueStorageServiceImpl.getValue<String>('VOUCHER');
-        if (await keyValueStorageServiceImpl.checkValue('BOAT')) {
-          boatJson = await keyValueStorageServiceImpl.getValue<String>('BOAT');
-        }
-        if (await keyValueStorageServiceImpl.checkValue('BOATNAME')) {
-          boatName =
-              await keyValueStorageServiceImpl.getValue<String>('BOATNAME');
-        }
-        if (await keyValueStorageServiceImpl.checkValue('DATESEARCH')) {
-          dateSearch =
-              await keyValueStorageServiceImpl.getValue<String>('DATESEARCH');
-        } else {
-          DateTime now = DateTime.now();
-          DateFormat formatterNow = DateFormat('MMMM-dd-yyyy');
-          dateSearch = formatterNow.format(now);
-        }
-
-        pathLocalStorage =
-            await UtilFileService.getApplicationDocumentsDirectoryRoyal();
-        state = state.copyWith(
-            pathLocalStorage: pathLocalStorage,
-            codeBoatDecode: codeVoucher,
-            bookingStatus: BookingStatus.authenticated,
-            boat: BoatMapper.boatJsonToEntity(jsonDecode(boatJson.toString())),
-            nameBoat: boatName.toString(),
-            dateSearch: dateSearch);
+    if (await keyValueStorageServiceImpl.checkValue('VOUCHER')) {
+      String? dateSearch;
+      String pathLocalStorage;
+      String? boatName;
+      String? boatJson;
+      String? codeVoucher =
+          await keyValueStorageServiceImpl.getValue<String>('VOUCHER');
+      if (await keyValueStorageServiceImpl.checkValue('BOAT')) {
+        boatJson = await keyValueStorageServiceImpl.getValue<String>('BOAT');
       }
+      if (await keyValueStorageServiceImpl.checkValue('BOATNAME')) {
+        boatName =
+            await keyValueStorageServiceImpl.getValue<String>('BOATNAME');
+      }
+      if (await keyValueStorageServiceImpl.checkValue('DATESEARCH')) {
+        dateSearch =
+            await keyValueStorageServiceImpl.getValue<String>('DATESEARCH');
+      } else {
+        DateTime now = DateTime.now();
+        DateFormat formatterNow = DateFormat.yMMMMd('en_US');
+        dateSearch = formatterNow.format(now);
+      }
+      pathLocalStorage =
+          await UtilFileService.getApplicationDocumentsDirectoryRoyal();
+      state = state.copyWith(
+          pathLocalStorage: pathLocalStorage,
+          codeBoatDecode: codeVoucher,
+          bookingStatus: BookingStatus.authenticated,
+          boat: BoatMapper.boatJsonToEntity(jsonDecode(boatJson.toString())),
+          nameBoat: boatName.toString(),
+          errorMessage: '',
+          dateSearch: dateSearch);
+    } else {
+      await UtilFileService.downloadDocument(
+          'https://galavail.com/upload/fleet/loading-boat.gif',
+          'loadingBoat.gif');
     }
   }
 
@@ -205,8 +205,9 @@ class BookingNotifier extends StateNotifier<BookingState> {
     await UtilFileService.deleteFile('itinerary.pdf');
     await UtilFileService.deleteFile('voucher.pdf');
     await UtilFileService.deleteFile('${boat.name}.pdf');
-    await UtilFileService.deleteFile('boatImage.jpg');
-    await UtilFileService.deleteFile('boatLogo.jpg');
+    await UtilFileService.deleteFile(boat.image);
+    await UtilFileService.deleteFile(boat.logo);
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   Boat _getBlankBoat() {

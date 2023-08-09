@@ -7,9 +7,12 @@ import 'package:galapagos_trip_app/features/cruise/widgets/tab_bar_view_manual.d
 
 import '../../../config/helpers/responsive.dart';
 import '../../trip/presentation/providers/booking_provider.dart';
+import 'no_authenticated_boat.dart';
 
 class TabBarBoat extends ConsumerWidget {
+  final bool authenticated;
   const TabBarBoat({
+    required this.authenticated,
     super.key,
   });
 
@@ -57,9 +60,11 @@ class TabBarBoat extends ConsumerWidget {
             ],
           ),
         ),
-        _TabBarViewBoat(
-          bookingProv: bookingProv,
-        ),
+        authenticated == true
+            ? _TabBarViewBoat(
+                bookingProv: bookingProv,
+              )
+            : const NoAuthenticatedBoat(),
       ],
     );
   }
